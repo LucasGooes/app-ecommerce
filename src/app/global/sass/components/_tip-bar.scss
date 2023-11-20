@@ -1,0 +1,12 @@
+.tip-bar__list {
+  justify-content: space-between;
+  display: flex;
+}
+
+.tip-bar__list__item {
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 146px;
+  display: flex;
+  gap: 16px;
+}

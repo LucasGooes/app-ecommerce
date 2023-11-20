@@ -1,0 +1,70 @@
+.banner-slider {
+  margin-bottom: 60px;
+}
+
+.banner-slider__list__item {
+  display: none;
+}
+
+.banner-slider__list__item__img {
+  @extend %border;
+  height: auto;
+  width: 100%;
+}
+
+.slick-dots {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  bottom: 8px;
+  gap: 8px;
+
+  li {
+    button {
+      @extend %resetbutton;
+      border: 1px solid black;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0;
+      width: 16px;
+      height: 4px;
+
+      &:active,
+      &:focus,
+      &:hover {
+        border: 1px solid black;
+      }
+    }
+
+    &.slick-active {
+      button {
+        background-color: black;
+      }
+    }
+  }
+}
+
+.slick-arrow {
+  justify-content: center;
+  top: calc(50% - 20px);
+  border-radius: 100%;
+  align-items: center;
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  border: none;
+  height: 40px;
+  width: 40px;
+  z-index: 1;
+  margin: 0 16px;
+
+  &.slick-prev {
+    left: 0;
+  }
+
+  &.slick-next {
+    right: 0;
+  }
+}

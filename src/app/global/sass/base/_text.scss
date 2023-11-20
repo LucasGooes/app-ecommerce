@@ -1,0 +1,6 @@
+@mixin text1($ff: "Roboto", $fw: bold, $fs: 16px, $fc: #353535) {
+  font-family: $ff;
+  font-weight: $fw;
+  font-size: $fs;
+  color: $fc;
+}

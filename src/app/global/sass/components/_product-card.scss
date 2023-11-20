@@ -1,0 +1,33 @@
+// Geral
+.product-card {
+  background-color: gray;
+  position: relative;
+  border-radius: 6px;
+  flex-flow: column;
+  max-width: 259px;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.product-card__link {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.product-card__image__image {
+  border-radius: 3px;
+  height: auto;
+  width: 100%;
+}
+
+.product-card__content {
+  flex-flow: column;
+  display: flex;
+  gap: 27px;
+}
+
+// Quando na shelf

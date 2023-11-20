@@ -1,0 +1,31 @@
+.banner-group-with-title-container {
+  align-items: center;
+  flex-flow: column;
+  display: flex;
+  gap: 18px;
+}
+
+.banner-group-with-title__title {
+  border-bottom: 1px solid;
+  padding: 0 32.5px 18px;
+}
+
+.banner-group__list {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.banner-group__list__item {
+  &--2,
+  &--3 {
+    width: 100%;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+}

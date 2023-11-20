@@ -1,0 +1,64 @@
+html {
+  scroll-padding: 128.4px;
+}
+
+body {
+  scroll-padding: 128.4px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.home-container,
+.pdp-container {
+  > div,
+  section {
+    margin-bottom: 60px;
+
+    &:last-child {
+      margin-bottom: 120px;
+    }
+  }
+}
+
+.bg-lock {
+  background-color: #00000050;
+  position: absolute;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  z-index: 4;
+  left: 0;
+  top: 0;
+}
+
+.dn {
+  display: none;
+}
+
+.df {
+  display: flex;
+}
+
+.cta {
+  background-color: red;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+  border-radius: 6px;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  border: none;
+  height: 40px;
+  width: 100%;
+
+  &.product-card__content__buy-button {
+    z-index: 1;
+  }
+
+  &2 {
+    background-color: transparent;
+    border: 1px solid;
+    gap: 16px;
+  }
+}
