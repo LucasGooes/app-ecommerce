@@ -1,6 +1,6 @@
-import '../global/styles/style.css'
-import '../global/styles/reset.css'
-import '../global/js/slick/slick.css'
+import '../../global/styles/style.css'
+import '../../global/styles/reset.css'
+import '../../global/js/slick/slick.css'
 
 export default function Pdp() {
   return (
