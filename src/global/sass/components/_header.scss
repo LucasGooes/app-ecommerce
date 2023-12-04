@@ -1,5 +1,5 @@
 .header-container {
-  background-color: white;
+  background-color: $white;
   margin-bottom: 60px;
 }
 
@@ -11,10 +11,10 @@
 }
 
 .top-bar {
-  background-color: gray;
+  background-color: $primary-pure-500;
 
   span {
-    @include text1();
+    @extend %text1;
   }
 }
 
@@ -38,7 +38,7 @@
 }
 
 .header-menu {
-  background-color: gray;
+  background-color: $primary-pure-500;
 }
 
 .header-menu__inner__list {
@@ -64,7 +64,7 @@
 
 .search-bar-inner {
   @extend %border;
-  background-color: #cecece;
+  background-color: $text-light-200;
   display: flex;
   height: 40px;
 }
@@ -72,7 +72,7 @@
 .search-bar__input-box {
   @extend %border;
   border-radius: 6px 0 0 6px;
-  background-color: #cecece;
+  background-color: $text-light-200;
   padding: 0 8px;
   flex-grow: 1;
   border: none;
@@ -91,6 +91,10 @@
   display: flex;
   height: 40px;
   width: 40px;
+
+  .material-symbols-outlined {
+    color: $text-dark-400;
+  }
 }
 
 .header-actions {
@@ -112,7 +116,7 @@
 }
 
 .cart-qtt {
-  background-color: gray;
+  background-color: $primary-pure-500;
   position: absolute;
   border-radius: 100%;
   padding: 1px 6px;
@@ -128,3 +132,88 @@
 .header-menu__inner__list__item__link {
   @extend %text1;
 }
+
+.checkout-progress {
+  align-items: center;
+  flex-flow: column;
+  display: flex;
+  gap: 8px;
+
+  label {
+    
+  }
+}
+
+///////////////
+/// WEBKIT ///
+/////////////
+
+progress {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 250px;
+  height: 20px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress::-webkit-progress-value {
+  background-image: -webkit-linear-gradient(
+      -45deg,
+      transparent 33%,
+      rgba(0, 0, 0, 0.1) 33%,
+      rgba(0, 0, 0, 0.1) 66%,
+      transparent 66%
+    ),
+    -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
+    -webkit-linear-gradient(left, $primary-pure-500, $secondary-dark-700);
+
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+//////////////////////
+/// END OF WEBKIT ///
+////////////////////
+
+//////////////
+// FIREFOX //
+////////////
+
+progress {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Get rid of default border in Firefox. */
+  border: none;
+
+  /* Dimensions */
+  width: 250px;
+  height: 20px;
+}
+
+progress::-moz-progress-bar {
+  background-image: -moz-linear-gradient(
+      135deg,
+      transparent 33%,
+      rgba(0, 0, 0, 0.1) 33%,
+      rgba(0, 0, 0, 0.1) 66%,
+      transparent 66%
+    ),
+    -moz-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
+    -moz-linear-gradient(left, $primary-pure-500, $secondary-dark-700);
+
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+/////////////////////
+// END OF FIREFOX //
+///////////////////

@@ -17,12 +17,16 @@
 }
 
 .minicart-drawer__header {
+  border-bottom: 1px solid $color-c-3;
   justify-content: space-between;
-  border-bottom: 1px solid;
   align-items: center;
   flex-shrink: 0;
   padding: 12px;
   display: flex;
+}
+
+.minicart-drawer__header__title {
+  @include text(18px, $primary-pure-500, 700);
 }
 
 .minicart-drawer__header__close {
@@ -36,10 +40,14 @@
 }
 
 .minicart-drawer__product-list__item {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $color-c-3;
   padding: 12px 0;
   display: flex;
   gap: 8px;
+}
+
+.product-img--medium {
+  border: 1px solid $high-dark;
 }
 
 .minicart-drawer__product-list__infos {
@@ -47,6 +55,15 @@
   padding-bottom: 12px;
   flex-flow: column;
   display: flex;
+}
+
+.product-name--2-lines {
+  @include text(14px, $text-pure-500, 400);
+  @include multiline-ellipsis(14px, 1.1, 2);
+}
+
+.minicart-drawer__product-list__infos__price {
+  @include text(14px, $black, 700);
 }
 
 .minicart-drawer__product-list__actions {
@@ -57,9 +74,17 @@
   display: flex;
 }
 
-.minicart-drawer__product-list__actions__remove {
+.action-remove {
   @extend %resetbutton;
   display: flex;
+
+  &:hover {
+    filter: brightness(1.5);
+  }
+
+  .material-symbols-outlined {
+    color: $cta-pure-500;
+  }
 }
 
 .minicart-drawer__footer {
@@ -74,9 +99,14 @@
 .minicart-drawer__footer__total {
   justify-content: space-between;
   display: flex;
+
+  span {
+    @include text(16px, $black, 700);
+  }
 }
 
 .minicart-drawer__footer__info {
+  @include text(16px, $text-dark-400, 400);
   justify-content: center;
   display: flex;
 }

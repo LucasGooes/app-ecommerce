@@ -1,11 +1,19 @@
 html {
+  background-color: $color-c-1;
   scroll-padding: 128.4px;
+  scroll-behavior: smooth;
 }
 
 body {
   scroll-padding: 128.4px;
   position: relative;
   overflow-x: hidden;
+}
+
+body * {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.1;
+  color: $text-pure-500;
 }
 
 .home-container,
@@ -40,25 +48,50 @@ body {
 }
 
 .cta {
-  background-color: red;
+  background-color: $support-1;
   justify-content: center;
   text-decoration: none;
   align-items: center;
   border-radius: 6px;
   cursor: pointer;
-  color: black;
+  color: $white;
   display: flex;
   border: none;
   height: 40px;
   width: 100%;
 
   &.product-card__content__buy-button {
+    @include text(18px, $white, 700);
     z-index: 1;
+  }
+
+  &:hover {
+    opacity: 0.85;
   }
 
   &2 {
     background-color: transparent;
-    border: 1px solid;
+    border: 1px solid $support-1;
+    color: $support-1;
     gap: 16px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    span {
+      color: $support-1;
+    }
   }
+}
+
+.slick-arrow {
+  .material-symbols-outlined {
+    color: $primary-pure-500;
+  }
+}
+
+.title {
+  @include text(32px, $text-pure-500, 700);
+  line-height: 1;
 }

@@ -24,7 +24,7 @@
   li {
     button {
       @extend %resetbutton;
-      border: 1px solid black;
+      border: 1px solid $primary-pure-500;
       border-radius: 6px;
       cursor: pointer;
       font-size: 0;
@@ -34,13 +34,13 @@
       &:active,
       &:focus,
       &:hover {
-        border: 1px solid black;
+        border: 1px solid $primary-pure-500;
       }
     }
 
     &.slick-active {
       button {
-        background-color: black;
+        background-color: $primary-pure-500;
       }
     }
   }

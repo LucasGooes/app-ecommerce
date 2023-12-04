@@ -18,11 +18,26 @@
   span {
     display: flex;
   }
+
+  .home, .term {
+    @include text(16px, $text-pure-500, 700);
+     a {
+      text-decoration: none;
+     }
+  }
+
+  .material-symbols-outlined{
+    color: $text-dark-400;
+  }
+
+  .term{
+color: $secondary-pure-500;
+  }
 }
 
 .filters-and-order-by {
   justify-content: flex-start;
-  background-color: gray;
+  background-color: $high-dark;
   border-radius: 6px;
   padding: 8px 12px;
   flex-wrap: wrap;
@@ -37,12 +52,15 @@
   padding: 0 12px;
   display: flex;
   height: 25px;
-
+  gap: 16px;
+  
   label {
+    @include text(16px, $text-pure-500, 700);
     padding-bottom: 2px;
   }
 
   select {
+    @include text(16px, $text-dark-400, 700);
     background-color: transparent;
     outline: none;
     display: flex;

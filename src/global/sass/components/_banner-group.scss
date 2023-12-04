@@ -2,12 +2,12 @@
   align-items: center;
   flex-flow: column;
   display: flex;
-  gap: 18px;
+  gap: 23px;
 }
 
 .banner-group-with-title__title {
-  border-bottom: 1px solid;
-  padding: 0 32.5px 18px;
+  border-bottom: 1px solid $color-c-3;
+  padding: 0 32.5px 16px;
 }
 
 .banner-group__list {
@@ -19,8 +19,14 @@
 }
 
 .banner-group__list__item {
+  img {
+    border-radius: 6px;
+  }
   &--2,
   &--3 {
+    img {
+      border-radius: 6px;
+    }
     width: 100%;
 
     img {

@@ -1,6 +1,31 @@
-@mixin text1($ff: "Roboto", $fw: bold, $fs: 16px, $fc: #353535) {
+@mixin text(
+  $fs: 16px,
+  $fc: $text-pure-500,
+  $fw: normal,
+  $ff: 'Roboto'
+) {
   font-family: $ff;
   font-weight: $fw;
   font-size: $fs;
   color: $fc;
+}
+
+@mixin multiline-ellipsis(
+  $font-size: 14px,
+  $line-height: 1.5,
+  $lines-to-show: 2,
+  $background: transparent
+) {
+  background: $background;
+  display: block;
+  display: -webkit-box;
+  max-height: $font-size * $line-height * $lines-to-show;
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: -o-ellipsis-lastline;
 }

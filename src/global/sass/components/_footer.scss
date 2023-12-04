@@ -1,5 +1,5 @@
 .footer-main-content {
-  background-color: gray;
+  background-color: $primary-dark-700;
   padding: 23px 16px;
 
   .container {
@@ -16,7 +16,7 @@
 }
 
 .footer-legal-info {
-  background-color: #cecece;
+  background-color: $primary-pure-500;
   justify-content: center;
   align-items: center;
   min-height: 90px;
@@ -27,4 +27,21 @@
   flex-flow: column;
   display: flex;
   gap: 16px;
+}
+
+.footer-main-content__about-box__text {
+  @include text(16px, $white, 400);
+}
+
+
+.footer-menu__item {
+  @include text(16px, $white, 400);
+
+  &:first-child {
+    font-weight: 700;
+  }
+}
+
+.footer-legal-info__text{
+  @include text(16px, $white, 400);
 }

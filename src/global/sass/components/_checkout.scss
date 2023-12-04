@@ -1,0 +1,295 @@
+.checkout-container {
+  padding-bottom: 120px;
+  display: flex;
+  gap: 24px;
+}
+
+.checkout-container * {
+  box-sizing: border-box;
+}
+
+.checkout-box {
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
+  background-color: $text-light-200;
+  height: fit-content;
+  align-items: center;
+  padding: 16px 32px;
+  border-radius: 6px;
+  flex-flow: column;
+  display: flex;
+  gap: 16px;
+}
+
+.checkout-box--left {
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+.checkout-box--right {
+  position: sticky;
+  top: 130.8px;
+  flex-shrink: 0;
+  width: 351.6px;
+}
+
+.checkout-text-1 {
+  @include text(16px, $text-pure-500, bold);
+}
+
+.checkout-product-name {
+  @include multiline-ellipsis(16px, 1.1, 2);
+}
+
+.checkout-product-list {
+  flex-flow: column;
+  display: flex;
+  gap: 8px;
+}
+
+.checkout-product-list__item {
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 12px 32px;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  gap: 32px;
+}
+
+.checkout-img-and-title {
+  display: flex;
+  gap: 16px;
+}
+
+.checkout-box--left.price {
+  white-space: nowrap;
+  @include text(18px, $black, bold);
+}
+
+.input-field-1 {
+  align-items: flex-start;
+  flex-flow: column;
+  display: flex;
+  width: 100%;
+  gap: 8px;
+
+  &__coupom,
+  &__shipping {
+    display: flex;
+    gap: 10px;
+  }
+
+  input {
+    @include text(16px, $text-dark-400, bold);
+    border-radius: 6px;
+    padding: 0 8px;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 178px;
+
+    &::placeholder {
+      @include text(16px, $text-dark-400, bold);
+    }
+  }
+
+  button {
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
+    @include text(16px, $support-1, bold);
+    background-color: $color-c-4;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: none;
+    width: 100px;
+    height: 40px;
+
+    &:hover {
+      filter: brightness(1.05);
+    }
+  }
+}
+
+.detailed-cost {
+  border-bottom: 1px solid $color-c-3;
+  padding-bottom: 16px;
+  flex-flow: column;
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.detailed-cost__line {
+  justify-content: space-between;
+  display: flex;
+
+  span {
+    @include text(16px, $text-pure-500, normal);
+  }
+}
+
+.total-cost {
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+
+  span {
+    @include text(16px, $black, bold);
+  }
+}
+
+.cta.checkout {
+  box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.15);
+  @include text(16px, $white, bold);
+}
+
+.cta2.checkout {
+  @include text(16px, $support-1, bold);
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  display: flex;
+  height: 40px;
+  width: 100%;
+}
+
+.summary-product-list {
+  flex-flow: column;
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.summary-product-list__list {
+  flex-flow: column;
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.summary-product-list__list__item {
+  justify-content: space-between;
+  background-color: $white;
+  border-radius: 3px;
+  display: flex;
+  padding: 8px;
+  width: 100%;
+  gap: 16px;
+}
+
+.summary-product-list__list__item__info {
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-flow: column;
+  display: flex;
+  gap: 16px;
+}
+
+.summary-product-list__list__item__info__name {
+  @include text(16px, $text-pure-500, bold);
+  @include multiline-ellipsis(16px, 1.1, 1);
+}
+
+.summary-product-list__list__item__info__price {
+  @include text(16px, $black, bold);
+}
+
+.checkout-form-boxes {
+  flex-flow: column;
+  display: flex;
+  flex-grow: 1;
+  gap: 24px;
+}
+
+.checkout-box.forms {
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+  gap: 32px;
+}
+
+.checkout-form-boxes__title {
+  @include text(16px, $black, bold);
+  align-items: center;
+  display: flex;
+  gap: 16px;
+
+  strong {
+    background-color: $secondary-pure-500;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    display: flex;
+    color: $white;
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.checkout-form-boxes__line {
+  align-items: flex-end;
+  display: flex;
+  width: 100%;
+  gap: 32px;
+}
+
+.checkout-form-boxes__line__input {
+  flex-grow: 1;
+  flex-flow: column;
+  display: flex;
+  gap: 12px;
+
+  &.installments {
+    max-width: 185px;
+  }
+
+  &.expiration-date {
+    max-width: 159px;
+  }
+
+  &.cvv {
+    max-width: 130px;
+  }
+
+  input,
+  select {
+    border-radius: 6px;
+    padding: 0 8px;
+    outline: none;
+    border: none;
+    height: 40px;
+  }
+}
+
+.billingcheckbox {
+  display: flex;
+  &:checked {
+    background-color: $secondary-pure-500;
+    content: "\2713";
+  }
+}
+
+.checkout-container.success {
+  align-items: center;
+  flex-flow: column;
+  display: flex;
+}
+
+.checkout-success__title {
+  @include text(32px, $text-pure-500, bold);
+}
+
+
+.checkout-success__icon.material-symbols-outlined {
+  color: $support-1;
+  font-size: 132px;
+}
+
+.checkout-success__info {
+  @include text(16px, $text-pure-500, normal);
+}
+
+.checkout-success__order-number {
+  @include text(16px, $text-pure-500, bold);
+}

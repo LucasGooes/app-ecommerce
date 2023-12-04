@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
-import "../global/js/slick/slick.css";
+
 import "../global/styles/reset.css";
 import "../global/styles/style.css";
-import "../global/styles/style.scss";
+//import "../global/js/base-script.js";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,23 +20,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet"
-        precedence="default"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        precedence="default" />
       <head>
-        <Script src="../global/js/slick/slick.min.js"></Script>
-        <Script src="../global/js/slick/slick-initializer.js"></Script>
-        <Script src="../global/js/slick/base-script.js"></Script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet"
+          precedence="default"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          precedence="default" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>{children}
+      </body>
     </html>
   );
 }

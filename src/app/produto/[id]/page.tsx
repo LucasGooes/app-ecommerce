@@ -1,40 +1,16 @@
 "use client";
-
-import "../global/styles/reset.css";
-import "../global/styles/style.css";
-//import "../global/js/base-script.js";
-import Link from "next/link";
-
+import { Produto } from '@/types/Produto';
+import "../../../global/styles/reset.css";
+import "../../../global/styles/style.css";
 import { useEffect, useState } from "react";
-import { Produto } from "@/types/Produto";
-import { Categoria } from '@/types/Categoria';
+import img from "../../../global/img/imagem-teste.png";
 
-export default function Home() {
-  const [produtos, setProdutos] = useState<{ content: Produto[] }>({
-    content: [],
-  });
-
-  const [categorias, setCategorias] = useState<{ content: Categoria[] }>({
-    content: [],
-  });
+export default function Produto({ params }: { params: { id: string } }) {
+  const [produto, setProduto] = useState<Produto | null>(null);
 
   useEffect(() => {
-    const listarCategorias = async () => {
-      const response = await fetch("http://127.0.0.1:8080/categoria/listar", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.ok) {
-        console.log("Não foi possível listar as categorias");
-        return;
-      }
-      const dados = (await response.json()) as { content: Categoria[] };
-      setCategorias(dados);
-    };
-
-    const buscarProdutos = async () => {
-      const response = await fetch("http://127.0.0.1:8080/produto/pagina", {
+    const buscarProdutoPorId = async () => {
+      const response = await fetch(`http://127.0.0.1:8080/produto/buscar/${params.id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -43,26 +19,22 @@ export default function Home() {
         console.log("Não foi possivel carregar os produtos");
         return;
       }
-      const dados = (await response.json()) as { content: Produto[] };
-      setProdutos(dados);
+      const produto = (await response.json()) as Produto;
+      setProduto(produto);
     };
-    listarCategorias();
-    buscarProdutos();
+    buscarProdutoPorId();
   }, []);
-  if (produtos.content.length === 0) {
-    return <div>Carregando...</div>;
-  }
   return (
     <>
       <div className="top-bar">
         <ul className="top-bar__text-list container">
-          <li className="top-bar__text-list__item" id="1">
+          <li className="top-bar__text-list__item">
             <span>Lorem ipsum dolor sit amet</span>
           </li>
-          <li className="top-bar__text-list__item" id="2">
+          <li className="top-bar__text-list__item">
             <span>Lorem ipsum dolor sit amet</span>
           </li>
-          <li className="top-bar__text-list__item" id="3">
+          <li className="top-bar__text-list__item">
             <span>Lorem ipsum dolor sit amet</span>
           </li>
         </ul>
@@ -111,125 +83,101 @@ export default function Home() {
         <div className="header-menu">
           <nav className="header-menu__inner container">
             <ul className="header-menu__inner__list">
-              {categorias.content.map((categoria) => (
-                <>
-                  <li className="header-menu__inner__list__item" id={categoria.codigo}>
-                    <a href={`/filtrar-categoria/${categoria.codigo}?descricao=${categoria.descricao}`} className="header-menu__inner__list__item__link"
-                    >{categoria.descricao}</a>
-                  </li>
-                </>
-              ))}
+              <li className="header-menu__inner__list__item">
+                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
+                >Departamento</a
+                >
+              </li>
+              <li className="header-menu__inner__list__item">
+                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
+                >Departamento</a
+                >
+              </li>
+              <li className="header-menu__inner__list__item">
+                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
+                >Departamento</a
+                >
+              </li>
+              <li className="header-menu__inner__list__item">
+                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
+                >Departamento</a
+                >
+              </li>
+              <li className="header-menu__inner__list__item">
+                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
+                >Departamento</a
+                >
+              </li>
+              <li className="header-menu__inner__list__item">
+                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
+                >Departamento</a
+                >
+              </li>
             </ul>
           </nav>
         </div>
       </header>
 
-      <main className="home-container container" style={{ width: '100%' }}>
-        <section className="banner-slider" style={{ width: '100%' }}>
-          <ul className="banner-slider__list" style={{ width: '100%' }}>
-            <li className="banner-slider__list__item">
-              <img
-                className="banner-slider__list__item__img"
-                src="https://fakeimg.pl/1172x364/"
-                alt=""
-              />
-            </li>
-            <li className="banner-slider__list__item">
-              <img
-                className="banner-slider__list__item__img"
-                src="https://fakeimg.pl/1172x364/"
-                alt=""
-              />
-            </li>
-            <li className="banner-slider__list__item">
-              <img
-                className="banner-slider__list__item__img"
-                src="https://fakeimg.pl/1172x364/"
-                alt=""
-              />
-            </li>
-            <li className="banner-slider__list__item">
-              <img
-                className="banner-slider__list__item__img"
-                src="https://fakeimg.pl/1172x364/"
-                alt=""
-              />
-            </li>
-          </ul>
+      <main className="pdp-container container" style={{ width: '100%' }}>
+        <div className="pdp-main-content">
+          <img
+            className="pdp-main-content__img"
+            src={img}
+            alt=""
+          />
+          <aside className="pdp-main-content__info-area">
+            <div className="pdp-main-content__info-area__named-id">
+              <h1 className="pdp-main-content__title">
+                {produto?.nome}
+              </h1>
+
+              <span className="pdp-main-content__id">{'Ref.' + produto?.codigo}</span>
+            </div>
+
+            <div className="pdp-main-content__info-area__small">
+              <div className="pdp-main-content__desc">
+                <p className="pdp-main-content__desc__text">
+                  Descrição rápida do produto com limite de tamanho...
+                </p>
+                <a className="pdp-main-content__see-more" href="#pdpMore">Ver mais</a>
+              </div>
+
+              <span className="pdp-main-content__price">{'R$ ' + produto?.preco}</span>
+              <form className="pdp-main-content__buy-area">
+                <div className="qtt-input">
+                  <button id="minus">
+                    <span className="material-symbols-outlined"> remove </span>
+                  </button>
+                  <input type="number" value="1" id="input" minlength="1" />
+                  <button id="plus">
+                    <span className="material-symbols-outlined"> add </span>
+                  </button>
+                </div>
+                <button className="pdp-main-content__buy-button cta">CTA</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+
+        <section id="pdpMore" className="pdp-details-area">
+          <h3>Descrição</h3>
+          <p>
+            {produto?.descricao}
+          </p>
         </section>
 
-        <section className="tip-bar-container">
-          <ul className="tip-bar__list">
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-          </ul>
+        <section className="pdp-details-area">
+          <h3>Dados técnicos</h3>
+          <p>{produto?.descricao2}</p>
         </section>
 
-        <section className="banner-group-container">
-          <ul className="banner-group__list">
-            <li className="banner-group__list__item">
-              <img src="https://fakeimg.pl/232x360/" alt="" />
-            </li>
-            <li className="banner-group__list__item">
-              <img src="https://fakeimg.pl/232x360/" alt="" />
-            </li>
-            <li className="banner-group__list__item">
-              <img src="https://fakeimg.pl/232x360/" alt="" />
-            </li>
-            <li className="banner-group__list__item">
-              <img src="https://fakeimg.pl/232x360/" alt="" />
-            </li>
-          </ul>
+        <section>
+          <img src="https://fakeimg.pl/1172x360/" alt="" />
         </section>
 
         <section className="shelf-container">
           <h3 className="shelf_title title">Title</h3>
           <ul className="shelf__list shelf__list-1">
-            {produtos.content.map((produto) => (
-              <>
-                <li className="shelf__list__item" id={produto.id}>
-                  <div className="product-card">
-                    <a className="product-card__link" href={`/produto/${produto.id}`}></a>
-                    <div className="product-card__image">
-                      <img
-                        src="https://fakeimg.pl/227x227/"
-                        alt=""
-                        className="product-card__image__image"
-                      />
-                    </div>
-                    <div className="product-card__content">
-                      <h4 className="product-card__content__title">
-                        {produto.nome}
-                      </h4>
-                      <span className="product-card__content__price">{'R$ ' + produto.preco} </span>
-                      <a
-                        className="cta product-card__content__buy-button"
-                        href="/adicionar/aocarrinho"
-                      >CTA</a
-                      >
-                    </div>
-                  </div>
-                </li>
-              </>
-            ))}
             <li className="shelf__list__item">
               <div className="product-card">
                 <a className="product-card__link" href="/templates/index.html"></a>
@@ -245,79 +193,9 @@ export default function Home() {
                     product name (max 2 lines)
                   </h4>
                   <span className="product-card__content__price">R$ 000,00</span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >CTA</a
-                  >
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <section className="banner-group-container banner-group-container--2">
-          <ul className="banner-group__list banner-group__list--2">
-            <li
-              className="banner-group-with-title__list__item banner-group__list__item--2"
-            >
-              <img src="https://fakeimg.pl/578x320/" alt="" />
-            </li>
-            <li
-              className="banner-group-with-title__list__item banner-group__list__item--2"
-            >
-              <img src="https://fakeimg.pl/578x320/" alt="" />
-            </li>
-          </ul>
-        </section>
-
-        <section className="banner-group-with-title-container">
-          <h3 className="banner-group-with-title__title title">Title</h3>
-          <ul className="banner-group__list banner-group-with-title__list">
-            <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
-            </li>
-            <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
-            </li>
-            <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
-            </li>
-            <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
-            </li>
-            <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
-            </li>
-            <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
-            </li>
-          </ul>
-        </section>
-
-        <section className="shelf-container-2">
-          <h3 className="shelf_title title">Title</h3>
-          <ul className="shelf__list shelf__list-2">
-            <li className="shelf__list__item">
-              <div className="product-card">
-                <a className="product-card__link" href="/templates/index.html"></a>
-                <div className="product-card__image">
-                  <img
-                    src="https://fakeimg.pl/227x227/"
-                    alt=""
-                    className="product-card__image__image"
-                  />
-                </div>
-                <div className="product-card__content">
-                  <h4 className="product-card__content__title">
-                    product name (max 2 lines)
-                  </h4>
-                  <span className="product-card__content__price">R$ 000,00</span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >CTA</a
-                  >
+                  <button className="cta product-card__content__buy-button">
+                    CTA
+                  </button>
                 </div>
               </div>
             </li>
@@ -336,11 +214,9 @@ export default function Home() {
                     product name (max 2 lines)
                   </h4>
                   <span className="product-card__content__price">R$ 000,00</span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >CTA</a
-                  >
+                  <button className="cta product-card__content__buy-button">
+                    CTA
+                  </button>
                 </div>
               </div>
             </li>
@@ -359,30 +235,12 @@ export default function Home() {
                     product name (max 2 lines)
                   </h4>
                   <span className="product-card__content__price">R$ 000,00</span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >CTA</a
-                  >
+                  <button className="cta product-card__content__buy-button">
+                    CTA
+                  </button>
                 </div>
               </div>
             </li>
-          </ul>
-        </section>
-
-        <section className="banner-group-container banner-group-container--3">
-          <ul className="banner-group__list banner-group__list--3">
-            <li
-              className="banner-group-with-title__list__item banner-group__list__item--3"
-            >
-              <img src="https://fakeimg.pl/1172x360/" alt="" />
-            </li>
-          </ul>
-        </section>
-
-        <section className="shelf-container-3">
-          <h3 className="shelf_title title">Title</h3>
-          <ul className="shelf__list shelf__list-3">
             <li className="shelf__list__item">
               <div className="product-card">
                 <a className="product-card__link" href="/templates/index.html"></a>
@@ -398,18 +256,37 @@ export default function Home() {
                     product name (max 2 lines)
                   </h4>
                   <span className="product-card__content__price">R$ 000,00</span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >CTA</a
-                  >
+                  <button className="cta product-card__content__buy-button">
+                    CTA
+                  </button>
                 </div>
               </div>
             </li>
-
+            <li className="shelf__list__item">
+              <div className="product-card">
+                <a className="product-card__link" href="/templates/index.html"></a>
+                <div className="product-card__image">
+                  <img
+                    src="https://fakeimg.pl/227x227/"
+                    alt=""
+                    className="product-card__image__image"
+                  />
+                </div>
+                <div className="product-card__content">
+                  <h4 className="product-card__content__title">
+                    product name (max 2 lines)
+                  </h4>
+                  <span className="product-card__content__price">R$ 000,00</span>
+                  <button className="cta product-card__content__buy-button">
+                    CTA
+                  </button>
+                </div>
+              </div>
+            </li>
           </ul>
         </section>
       </main>
+
       <footer className="footer-container">
         <div className="footer-main-content">
           <div className="footer-main-content container">
@@ -420,7 +297,8 @@ export default function Home() {
                 className="footer-main-content__about-box__logo"
               />
               <p className="footer-main-content__about-box__text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium non purus id suscipit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                pretium non purus id suscipit.
               </p>
             </div>
             <ul className="footer-menu footer-menu--1">
@@ -480,7 +358,7 @@ export default function Home() {
                 <button id="minusc">
                   <span className="material-symbols-outlined"> remove </span>
                 </button>
-                <input type="number" id="inputc" minLength="1" />
+                <input type="number" value="1" id="inputc" minlength="1" />
                 <button id="plusc">
                   <span className="material-symbols-outlined"> add </span>
                 </button>
@@ -511,7 +389,8 @@ export default function Home() {
           </button>
         </div>
       </div>
+
       <div id="bgLock" className="bg-lock dn"></div>
     </>
-  );
+  )
 }

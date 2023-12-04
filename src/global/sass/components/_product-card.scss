@@ -1,6 +1,6 @@
 // Geral
 .product-card {
-  background-color: gray;
+  background-color: $color-c-2;
   position: relative;
   border-radius: 6px;
   flex-flow: column;
@@ -29,5 +29,17 @@
   display: flex;
   gap: 27px;
 }
+
+.product-card__content__title {
+  @include text(18px, $text-pure-500, 700);
+  @include multiline-ellipsis(18px, 1.1, 2);
+  min-height: 39.6px;
+}
+
+.product-card__content__price{
+  @include text(18px, $black, 700);
+}
+
+
 
 // Quando na shelf

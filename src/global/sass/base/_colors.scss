@@ -1,0 +1,79 @@
+$primary-pure-500: #00529E;
+$primary-light-50: #006ACC;
+$primary-medium-300: #004F99;
+$primary-dark-700: #003566;
+
+$secondary-pure-500: #002A52;
+$secondary-light-50: #004E99;
+$secondary-medium-300: #004180;
+$secondary-dark-700: #001529;
+
+$cta-pure-500: #E2020A;
+$cta-disable-50: #E2020A50;
+$cta-focus-300: #F3020B;
+$cta-hover-700: #F3020B;
+
+$text-pure-500: #353535;
+$text-white-100: #ffffff;
+$text-light-200: #e2e2e2;
+$text-medium-300: #bfbfbf;
+$text-dark-400: #777777;
+
+$low-pure: #000000;
+$low-light: #a3a3a3;
+$low-medium: #666666;
+$low-dark: #292929;
+
+$high-pure: #ffffff;
+$high-light: #f5f5f5;
+$high-medium: #e0e0e0;
+$high-dark: #cccccc;
+
+$success-pure: #afe86d;
+$success-light: #e5fdca;
+$success-medium: #caf598;
+$success-dark: #79b03a;
+
+$warning-pure: #ffc542;
+$warning-light: #ffefc9;
+$warning-medium: #ffe19c;
+$warning-dark: #d19200;
+
+$error-pure: #ff6b6b;
+$error-light: #ffd6d6;
+$error-medium: #ffb8b8;
+$error-dark: #cc1818;
+
+$support-1: #00c29a;
+$support-2: #f5487f;
+$support-3: #b6c1ea;
+$support-4: #9847f5;
+$support-5: #e4d864;
+$support-6: #53dfe8;
+$support-7: #00c271;
+$support-9: #3300f8;
+$support-10: #f9f9f9;
+
+// Gradientes
+$grad-1: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 100%) 50%,
+  $primary-pure-500 0%
+);
+$grad-2: linear-gradient(90deg, $primary-pure-500 0%, $secondary-pure-500 100%);
+
+
+// Apoios
+$white: #ffffff;
+$black: #000;
+
+$color-c-1: #F7F7F7;
+$color-c-2: #E3E4EA;
+$color-c-3: #CFCFCF;
+$color-c-4: #D9D9D9;
+$color-c-5: $white;
+$color-c-6: $white;
+$color-c-7: $white;
+$color-c-8: $white;
+$color-c-9: $white;
+$color-c-10: $white;

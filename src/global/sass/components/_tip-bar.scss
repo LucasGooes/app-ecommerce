@@ -9,4 +9,8 @@
   max-width: 146px;
   display: flex;
   gap: 16px;
+
+  spam {
+    @include text(16px, $text-pure-500, 700);
+  }
 }

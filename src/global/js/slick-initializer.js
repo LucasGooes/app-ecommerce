@@ -34,4 +34,28 @@ $(document).ready(function () {
     dots: false,
     zIndex: 1,
   });
+
+  $(".shelf__list-2").slick({
+    waitForAnimate: false,
+    // autoplay: !0,
+    // autoplaySpeed: 4500,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: false,
+    zIndex: 1,
+  });
+
+  $(".shelf__list-3").slick({
+    waitForAnimate: false,
+    // autoplay: !0,
+    // autoplaySpeed: 4500,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: false,
+    zIndex: 1,
+  });
 });
