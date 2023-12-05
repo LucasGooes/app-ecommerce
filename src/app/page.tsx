@@ -5,6 +5,7 @@ import "../global/styles/style.css";
 //import "../global/js/base-script.js";
 import Link from "next/link";
 
+import * as React from "react";
 import { useEffect, useState } from "react";
 import { Produto } from "@/types/Produto";
 import { Categoria } from '@/types/Categoria';
@@ -17,6 +18,26 @@ export default function Home() {
   const [categorias, setCategorias] = useState<{ content: Categoria[] }>({
     content: [],
   });
+  /*
+    const [value, setValue] = React.useState("");
+  
+    const handleSubmit = () => {
+      if (value.length > 0) {
+        const response = fetch(`http://127.0.0.1:8080/produto/buscar?nome=${value}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then((r) => {
+          setValue("");
+          if (!r.ok) {
+            console.log("Não foi possivel carregar os produtos");
+            throw new Error("erro na requisição");
+          }
+          setProdutos(r.json());
+        }).catch((e: Error) => console.log("error", e.message));;
+      }
+    };
+    */
 
   useEffect(() => {
     const listarCategorias = async () => {
@@ -33,7 +54,7 @@ export default function Home() {
       setCategorias(dados);
     };
 
-    const buscarProdutos = async () => {
+    const listarPaginaProdutos = async () => {
       const response = await fetch("http://127.0.0.1:8080/produto/pagina", {
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +68,7 @@ export default function Home() {
       setProdutos(dados);
     };
     listarCategorias();
-    buscarProdutos();
+    listarPaginaProdutos();
   }, []);
   if (produtos.content.length === 0) {
     return <div>Carregando...</div>;
@@ -78,18 +99,25 @@ export default function Home() {
               /></a>
 
             <search className="search-bar">
-              <form className="search-bar-inner">
+              <div className="search-bar-inner">
                 <input
                   className="search-bar__input-box"
                   type="text"
-                  id="search"
+                  id=""
                   name="busca"
                   placeholder="O que você procura?"
+                  onKeyUp={(e) => {
+                    if (e.key === "Enter") {
+                      handleSubmit();
+                    }
+                  }}
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
                 />
                 <button className="search-bar__submit-button" type="submit">
                   <span className="material-symbols-outlined"> search </span>
                 </button>
-              </form>
+              </div>
             </search>
 
             <div className="header-actions">
