@@ -106,8 +106,8 @@ export default function ProdutosPorCategoria({ params }: { params: { id: string,
             <ul className="header-menu__inner__list">
               {categorias.content.map((categoria) => (
                 <>
-                  <li className="header-menu__inner__list__item">
-                    <a href="templates/plp.html" className="header-menu__inner__list__item__link"
+                  <li className="header-menu__inner__list__item" id={categoria.codigo}>
+                    <a href={`/filtrar-categoria/${categoria.codigo}?descricao=${categoria.descricao}`} className="header-menu__inner__list__item__link"
                     >{categoria.descricao}</a>
                   </li>
                 </>

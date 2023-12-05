@@ -103,50 +103,50 @@ export default function CheckoutInfoAndPayment() {
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="checkoutEmail">Email</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="checkoutEmail">Email</label>
                   <input required type="text" name="" id="checkoutEmail" placeholder="email@exemplo.com" />
                 </div>
               </div>
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="fullName">Nome Completo</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="fullName">Nome Completo</label>
                   <input required type="text" name="" id="fullName" placeholder="Ex.: José da Silva" />
                 </div>
               </div>
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="phone">Celular</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="phone">Celular</label>
                   <input required type="text" name="" id="phone" placeholder="Ex.: (00) 00000-0000" />
                 </div>
               </div>
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" for="cep">CEP</label className="checkout-text-1">
+                  <label className="checkout-text-1" for="cep">CEP</label>
                   <input required type="text" name="" id="cep" placeholder="Ex.: 00000-000" />
                 </div>
 
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="adress">Endereço</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="adress">Endereço</label>
                   <input required type="text" name="" id="adress" placeholder="Ex.: Rua de exemplo" />
                 </div>
               </div>
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="adressNumber">Número</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="adressNumber">Número</label>
                   <input required type="text" name="" id="adressNumber" placeholder="Número" />
                 </div>
 
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="adressNeighborhood">Bairro</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="adressNeighborhood">Bairro</label>
                   <input required type="text" name="" id="adressNeighborhood" placeholder="Bairro" />
                 </div>
 
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="adressComplement">Complemento</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="adressComplement">Complemento</label>
                   <input required type="text" name="" id="adressComplement" placeholder="Ex.: Ap 14" />
                 </div>
               </div>
@@ -159,23 +159,21 @@ export default function CheckoutInfoAndPayment() {
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="cardNumber">Número do cartão</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="cardNumber">Número do cartão</label>
                   <input required type="number" name="" id="cardNumber" placeholder="Ex.: 0000 0000 0000 0000" />
                 </div>
               </div>
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input">
-                  <label className="checkout-text-1" htmlFor="cardHolder"
-                  >Nome do proprietário (como impresso no cartão)</label className="checkout-text-1"
-                >
+                  <label className="checkout-text-1" htmlFor="cardHolder">Nome do proprietário (como impresso no cartão)</label>
                   <input required type="text" name="" id="cardHolder" placeholder="Ex.: José da Silva" />
                 </div>
               </div>
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input installments">
-                  <label className="checkout-text-1" htmlFor="checkoutInstallments">Parcelas</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="checkoutInstallments">Parcelas</label>
                   <select name="checkoutInstallments" id="checkoutInstallments">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -185,21 +183,20 @@ export default function CheckoutInfoAndPayment() {
                 </div>
 
                 <div className="checkout-form-boxes__line__input expiration-date">
-                  <label className="checkout-text-1" htmlFor="expirationDate">Validade</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="expirationDate">Validade</label>
                   <input required type="date" name="" id="expirationDate" />
                 </div>
               </div>
 
               <div className="checkout-form-boxes__line">
                 <div className="checkout-form-boxes__line__input cvv">
-                  <label className="checkout-text-1" htmlFor="cvv">CVV</label className="checkout-text-1">
+                  <label className="checkout-text-1" htmlFor="cvv">CVV</label>
                   <input required type="number" name="" id="cvv" placeholder="Ex.: 000" />
                 </div>
 
                 <div className="billingcheckbox">
                   <label className="checkout-text-1 db" htmlFor="sameAdressForBilling"
-                  >Usar endereço da entrega como endereço de cobrança</label className="checkout-text-1"
-                >
+                  >Usar endereço da entrega como endereço de cobrança</label>
                   <input className="billingcheckbox" type="checkbox" id="sameAdressForBilling" />
                 </div>
               </div>
@@ -265,7 +262,7 @@ export default function CheckoutInfoAndPayment() {
             </div>
 
             <div className="input-field-1">
-              <label className="checkout-text-1" className="checkout-text-1" htmlFor="cupomField">Adicionar Cupom:</label className="checkout-text-1">
+              <label className="checkout-text-1" className="checkout-text-1" htmlFor="cupomField">Adicionar Cupom:</label>
               <div className="input-field-1__coupom">
                 <input id="cupomField" type="text" placeholder="CUPOM" />
                 <button>Adicionar</button>
@@ -392,14 +389,12 @@ export default function CheckoutInfoAndPayment() {
           >
           <button
             id="minicartCloseButton"
-            className="minicart-drawer__footer__cta2 cta cta2"
-          >
+            className="minicart-drawer__footer__cta2 cta cta2">
             <span className="material-symbols-outlined"> arrow_back </span> Continuar
             comprando
           </button>
         </div>
       </div>
-
       <div id="bgLock" className="bg-lock dn"></div>
     </>
   )

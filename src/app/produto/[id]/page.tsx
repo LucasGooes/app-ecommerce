@@ -148,7 +148,7 @@ export default function Produto({ params }: { params: { id: string } }) {
                   <button id="minus">
                     <span className="material-symbols-outlined"> remove </span>
                   </button>
-                  <input type="number" value="1" id="input" minlength="1" />
+                  <input type="number" value="1" id="input" minLength="1" />
                   <button id="plus">
                     <span className="material-symbols-outlined"> add </span>
                   </button>
