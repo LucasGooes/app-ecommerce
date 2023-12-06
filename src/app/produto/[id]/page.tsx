@@ -8,6 +8,10 @@ import img from "../../../global/img/imagem-teste.png";
 export default function Produto({ params }: { params: { id: string } }) {
   const [produto, setProduto] = useState<Produto | null>(null);
 
+  const [categorias, setCategorias] = useState<{ content: Categoria[] }>({
+    content: [],
+  });
+
   useEffect(() => {
     const buscarProdutoPorId = async () => {
       const response = await fetch(`http://127.0.0.1:8080/produto/buscar/${params.id}`, {
@@ -22,6 +26,21 @@ export default function Produto({ params }: { params: { id: string } }) {
       const produto = (await response.json()) as Produto;
       setProduto(produto);
     };
+
+    const listarCategorias = async () => {
+      const response = await fetch("http://127.0.0.1:8080/categoria/listar", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        console.log("Não foi possível listar as categorias");
+        return;
+      }
+      const dados = (await response.json()) as { content: Categoria[] };
+      setCategorias(dados);
+    };
+    listarCategorias();
     buscarProdutoPorId();
   }, []);
   return (
@@ -83,36 +102,14 @@ export default function Produto({ params }: { params: { id: string } }) {
         <div className="header-menu">
           <nav className="header-menu__inner container">
             <ul className="header-menu__inner__list">
-              <li className="header-menu__inner__list__item">
-                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a href="templates/plp.html" className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
+              {categorias.content.map((categoria) => (
+                <>
+                  <li className="header-menu__inner__list__item" id={categoria.codigo}>
+                    <a href={`/filtrar-categoria/${categoria.codigo}?descricao=${categoria.descricao}`} className="header-menu__inner__list__item__link"
+                    >{categoria.descricao}</a>
+                  </li>
+                </>
+              ))}
             </ul>
           </nav>
         </div>

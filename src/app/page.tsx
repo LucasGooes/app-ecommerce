@@ -106,13 +106,15 @@ export default function Home() {
                   id=""
                   name="busca"
                   placeholder="O que você procura?"
-                  onKeyUp={(e) => {
-                    if (e.key === "Enter") {
-                      handleSubmit();
-                    }
-                  }}
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                /*
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit();
+                  }
+                }}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                */
                 />
                 <button className="search-bar__submit-button" type="submit">
                   <span className="material-symbols-outlined"> search </span>

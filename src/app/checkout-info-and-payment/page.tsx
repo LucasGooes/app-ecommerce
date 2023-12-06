@@ -1,10 +1,28 @@
 "use client";
 
+import { event } from 'jquery';
 import "../../global/styles/reset.css";
 import "../../global/styles/style.css";
 import { useEffect, useState } from "react";
 
 export default function CheckoutInfoAndPayment() {
+  const [pedido, setPedido] = useState('');
+
+  const submeterPedido = () => {
+    fetch('http://localhost:8085/pedido/submeter', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({}
+      ),
+    }).then((response) => response.json())
+  }
+
+  const handleSubmit = () => {
+    submeterPedido();
+  }
+
   return (
     <>
       <div className="top-bar">
@@ -94,7 +112,7 @@ export default function CheckoutInfoAndPayment() {
       </header>
 
       <main style={{ width: "100%" }}>
-        <form className="checkout-container container">
+        <form onSubmit={handleSubmit} className="checkout-container container">
           <div className="checkout-form-boxes">
             <div className="checkout-box forms">
               <span className="checkout-form-boxes__title"
