@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 
 import "../global/styles/reset.css";
 import "../global/styles/style.css";
+import { CarrinhoContextProvider } from '@/contexts/CarrinhoContext';
+import Providers from '@/providers';
 //import "../global/js/base-script.js";
 
 
@@ -33,7 +35,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
           precedence="default" />
       </head>
-      <body className={inter.className}>{children}
+      <body className={inter.className}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -19,10 +19,10 @@ const ProdutosSelecionadosContext = createContext<CarrinhoContextProviderProps>(
   {} as CarrinhoContextProviderProps
 );
 
-export const CarrinhoContextProvider = ({ children } : { children: ReactNode}) => {
-  const [produtosSelecionados, setProdutosSelecionados] = useState<Produto[]>([]);
+export const CarrinhoContextProvider = ({ children }: { children: ReactNode }) => {
+  const [produtosSelecionados, setProdutosSelecionado] = useState<Produto[]>([]);
   return (
-    { children}
+    <ProdutosSelecionadosContext.Provider value={{ produtosSelecionados, setProdutosSelecionado }}>{children}</ProdutosSelecionadosContext.Provider>
   );
 };
 
