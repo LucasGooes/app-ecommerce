@@ -1,9 +1,11 @@
 "use client";
 
+import { CategoriaComponent } from "@/components/categoria";
 import "../global/styles/reset.css";
 import "../global/styles/style.css";
 //import "../global/js/base-script.js";
 
+import { TipBarListItem } from "@/components/tip-bar-list-item";
 import { Categoria } from "@/types/Categoria";
 import { Produto } from "@/types/Produto";
 import { useEffect, useState } from "react";
@@ -153,17 +155,7 @@ export default function Home() {
             <ul className="header-menu__inner__list">
               {categorias.content.map((categoria) => (
                 <>
-                  <li
-                    className="header-menu__inner__list__item"
-                    id={categoria.codigo.toString()}
-                  >
-                    <a
-                      href={`/filtrar-categoria/${categoria.codigo}?descricao=${categoria.descricao}`}
-                      className="header-menu__inner__list__item__link"
-                    >
-                      {categoria.descricao}
-                    </a>
-                  </li>
+                  <CategoriaComponent categoria={categoria} />
                 </>
               ))}
             </ul>
@@ -207,26 +199,9 @@ export default function Home() {
 
         <section className="tip-bar-container">
           <ul className="tip-bar__list">
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
-            <li className="tip-bar__list__item">
-              <img src="https://fakeimg.pl/48x48/" alt="" />
-              <span>Label em duas linhas</span>
-            </li>
+            {Array.from({ length: 4 }).map((_, index) => (
+              <TipBarListItem />
+            ))}
           </ul>
         </section>
 
