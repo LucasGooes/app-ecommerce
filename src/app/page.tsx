@@ -3,12 +3,10 @@
 import "../global/styles/reset.css";
 import "../global/styles/style.css";
 //import "../global/js/base-script.js";
-import Link from "next/link";
 
-import * as React from "react";
-import { useEffect, useState } from "react";
+import { Categoria } from "@/types/Categoria";
 import { Produto } from "@/types/Produto";
-import { Categoria } from '@/types/Categoria';
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [produtos, setProdutos] = useState<{ content: Produto[] }>({
@@ -96,7 +94,8 @@ export default function Home() {
                 className="header-main-content__inner-container__logo"
                 src="https://fakeimg.pl/120x70/"
                 alt=""
-              /></a>
+              />
+            </a>
 
             <search className="search-bar">
               <div className="search-bar-inner">
@@ -106,7 +105,7 @@ export default function Home() {
                   id=""
                   name="busca"
                   placeholder="O que você procura?"
-                /*
+                  /*
                 onKeyUp={(e) => {
                   if (e.key === "Enter") {
                     handleSubmit();
@@ -123,8 +122,14 @@ export default function Home() {
             </search>
 
             <div className="header-actions">
-              <a className="header-actions__shortcut" href="mailto:sac@email.com.br?subject=Atendimento e-commerce&body=Olá, venho do e-commerce e preciso de ajudar com o seguinte problema:">
-                <span className="material-symbols-outlined"> support_agent </span>
+              <a
+                className="header-actions__shortcut"
+                href="mailto:sac@email.com.br?subject=Atendimento e-commerce&body=Olá, venho do e-commerce e preciso de ajudar com o seguinte problema:"
+              >
+                <span className="material-symbols-outlined">
+                  {" "}
+                  support_agent{" "}
+                </span>
                 <span>Atendimento</span>
               </a>
               <button
@@ -132,8 +137,13 @@ export default function Home() {
                 title="minicart"
                 className="header-actions__minicart"
               >
-                <span id="minicartQtt" className="cart-qtt">0</span>
-                <span className="material-symbols-outlined"> shopping_cart </span>
+                <span id="minicartQtt" className="cart-qtt">
+                  0
+                </span>
+                <span className="material-symbols-outlined">
+                  {" "}
+                  shopping_cart{" "}
+                </span>
               </button>
             </div>
           </div>
@@ -143,9 +153,16 @@ export default function Home() {
             <ul className="header-menu__inner__list">
               {categorias.content.map((categoria) => (
                 <>
-                  <li className="header-menu__inner__list__item" id={categoria.codigo}>
-                    <a href={`/filtrar-categoria/${categoria.codigo}?descricao=${categoria.descricao}`} className="header-menu__inner__list__item__link"
-                    >{categoria.descricao}</a>
+                  <li
+                    className="header-menu__inner__list__item"
+                    id={categoria.codigo.toString()}
+                  >
+                    <a
+                      href={`/filtrar-categoria/${categoria.codigo}?descricao=${categoria.descricao}`}
+                      className="header-menu__inner__list__item__link"
+                    >
+                      {categoria.descricao}
+                    </a>
                   </li>
                 </>
               ))}
@@ -154,9 +171,9 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="home-container container" style={{ width: '100%' }}>
-        <section className="banner-slider" style={{ width: '100%' }}>
-          <ul className="banner-slider__list" style={{ width: '100%' }}>
+      <main className="home-container container" style={{ width: "100%" }}>
+        <section className="banner-slider" style={{ width: "100%" }}>
+          <ul className="banner-slider__list" style={{ width: "100%" }}>
             <li className="banner-slider__list__item">
               <img
                 className="banner-slider__list__item__img"
@@ -235,9 +252,12 @@ export default function Home() {
           <ul className="shelf__list shelf__list-1">
             {produtos.content.map((produto) => (
               <>
-                <li className="shelf__list__item" id={produto.id}>
+                <li className="shelf__list__item" id={produto.id.toString()}>
                   <div className="product-card">
-                    <a className="product-card__link" href={`/produto/${produto.id}`}></a>
+                    <a
+                      className="product-card__link"
+                      href={`/produto/${produto.id}`}
+                    ></a>
                     <div className="product-card__image">
                       <img
                         src="https://fakeimg.pl/227x227/"
@@ -249,12 +269,15 @@ export default function Home() {
                       <h4 className="product-card__content__title">
                         {produto.nome}
                       </h4>
-                      <span className="product-card__content__price">{'R$ ' + produto.preco} </span>
+                      <span className="product-card__content__price">
+                        {"R$ " + produto.preco}{" "}
+                      </span>
                       <a
                         className="cta product-card__content__buy-button"
                         href="/adicionar/aocarrinho"
-                      >CTA</a
                       >
+                        CTA
+                      </a>
                     </div>
                   </div>
                 </li>
@@ -262,7 +285,10 @@ export default function Home() {
             ))}
             <li className="shelf__list__item">
               <div className="product-card">
-                <a className="product-card__link" href="/templates/index.html"></a>
+                <a
+                  className="product-card__link"
+                  href="/templates/index.html"
+                ></a>
                 <div className="product-card__image">
                   <img
                     src="https://fakeimg.pl/227x227/"
@@ -274,12 +300,15 @@ export default function Home() {
                   <h4 className="product-card__content__title">
                     product name (max 2 lines)
                   </h4>
-                  <span className="product-card__content__price">R$ 000,00</span>
+                  <span className="product-card__content__price">
+                    R$ 000,00
+                  </span>
                   <a
                     className="cta product-card__content__buy-button"
                     href="/templates/pdp.html"
-                  >CTA</a
                   >
+                    CTA
+                  </a>
                 </div>
               </div>
             </li>
@@ -288,14 +317,10 @@ export default function Home() {
 
         <section className="banner-group-container banner-group-container--2">
           <ul className="banner-group__list banner-group__list--2">
-            <li
-              className="banner-group-with-title__list__item banner-group__list__item--2"
-            >
+            <li className="banner-group-with-title__list__item banner-group__list__item--2">
               <img src="https://fakeimg.pl/578x320/" alt="" />
             </li>
-            <li
-              className="banner-group-with-title__list__item banner-group__list__item--2"
-            >
+            <li className="banner-group-with-title__list__item banner-group__list__item--2">
               <img src="https://fakeimg.pl/578x320/" alt="" />
             </li>
           </ul>
@@ -330,7 +355,10 @@ export default function Home() {
           <ul className="shelf__list shelf__list-2">
             <li className="shelf__list__item">
               <div className="product-card">
-                <a className="product-card__link" href="/templates/index.html"></a>
+                <a
+                  className="product-card__link"
+                  href="/templates/index.html"
+                ></a>
                 <div className="product-card__image">
                   <img
                     src="https://fakeimg.pl/227x227/"
@@ -342,18 +370,24 @@ export default function Home() {
                   <h4 className="product-card__content__title">
                     product name (max 2 lines)
                   </h4>
-                  <span className="product-card__content__price">R$ 000,00</span>
+                  <span className="product-card__content__price">
+                    R$ 000,00
+                  </span>
                   <a
                     className="cta product-card__content__buy-button"
                     href="/templates/pdp.html"
-                  >CTA</a
                   >
+                    CTA
+                  </a>
                 </div>
               </div>
             </li>
             <li className="shelf__list__item">
               <div className="product-card">
-                <a className="product-card__link" href="/templates/index.html"></a>
+                <a
+                  className="product-card__link"
+                  href="/templates/index.html"
+                ></a>
                 <div className="product-card__image">
                   <img
                     src="https://fakeimg.pl/227x227/"
@@ -365,18 +399,24 @@ export default function Home() {
                   <h4 className="product-card__content__title">
                     product name (max 2 lines)
                   </h4>
-                  <span className="product-card__content__price">R$ 000,00</span>
+                  <span className="product-card__content__price">
+                    R$ 000,00
+                  </span>
                   <a
                     className="cta product-card__content__buy-button"
                     href="/templates/pdp.html"
-                  >CTA</a
                   >
+                    CTA
+                  </a>
                 </div>
               </div>
             </li>
             <li className="shelf__list__item">
               <div className="product-card">
-                <a className="product-card__link" href="/templates/index.html"></a>
+                <a
+                  className="product-card__link"
+                  href="/templates/index.html"
+                ></a>
                 <div className="product-card__image">
                   <img
                     src="https://fakeimg.pl/227x227/"
@@ -388,12 +428,15 @@ export default function Home() {
                   <h4 className="product-card__content__title">
                     product name (max 2 lines)
                   </h4>
-                  <span className="product-card__content__price">R$ 000,00</span>
+                  <span className="product-card__content__price">
+                    R$ 000,00
+                  </span>
                   <a
                     className="cta product-card__content__buy-button"
                     href="/templates/pdp.html"
-                  >CTA</a
                   >
+                    CTA
+                  </a>
                 </div>
               </div>
             </li>
@@ -402,9 +445,7 @@ export default function Home() {
 
         <section className="banner-group-container banner-group-container--3">
           <ul className="banner-group__list banner-group__list--3">
-            <li
-              className="banner-group-with-title__list__item banner-group__list__item--3"
-            >
+            <li className="banner-group-with-title__list__item banner-group__list__item--3">
               <img src="https://fakeimg.pl/1172x360/" alt="" />
             </li>
           </ul>
@@ -415,7 +456,10 @@ export default function Home() {
           <ul className="shelf__list shelf__list-3">
             <li className="shelf__list__item">
               <div className="product-card">
-                <a className="product-card__link" href="/templates/index.html"></a>
+                <a
+                  className="product-card__link"
+                  href="/templates/index.html"
+                ></a>
                 <div className="product-card__image">
                   <img
                     src="https://fakeimg.pl/227x227/"
@@ -427,16 +471,18 @@ export default function Home() {
                   <h4 className="product-card__content__title">
                     product name (max 2 lines)
                   </h4>
-                  <span className="product-card__content__price">R$ 000,00</span>
+                  <span className="product-card__content__price">
+                    R$ 000,00
+                  </span>
                   <a
                     className="cta product-card__content__buy-button"
                     href="/templates/pdp.html"
-                  >CTA</a
                   >
+                    CTA
+                  </a>
                 </div>
               </div>
             </li>
-
           </ul>
         </section>
       </main>
@@ -450,7 +496,8 @@ export default function Home() {
                 className="footer-main-content__about-box__logo"
               />
               <p className="footer-main-content__about-box__text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium non purus id suscipit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Curabitur pretium non purus id suscipit.
               </p>
             </div>
             <ul className="footer-menu footer-menu--1">
@@ -471,7 +518,9 @@ export default function Home() {
 
         <div className="footer-legal-info">
           <div className="container">
-            <p className="footer-legal-info__text">Informação de desenvolvimento</p>
+            <p className="footer-legal-info__text">
+              Informação de desenvolvimento
+            </p>
           </div>
         </div>
       </footer>
@@ -492,13 +541,13 @@ export default function Home() {
               alt=""
             />
             <div className="minicart-drawer__product-list__infos">
-              <span className="product-name--2-lines"
-              >Nome do produto em até duas linhas</span
-              >
+              <span className="product-name--2-lines">
+                Nome do produto em até duas linhas
+              </span>
 
-              <span className="minicart-drawer__product-list__infos__price"
-              >R$ 000,00</span
-              >
+              <span className="minicart-drawer__product-list__infos__price">
+                R$ 000,00
+              </span>
             </div>
 
             <div className="minicart-drawer__product-list__actions">
@@ -510,7 +559,7 @@ export default function Home() {
                 <button id="minusc">
                   <span className="material-symbols-outlined"> remove </span>
                 </button>
-                <input type="number" id="inputc" minLength="1" />
+                <input type="number" id="inputc" minLength={1} />
                 <button id="plusc">
                   <span className="material-symbols-outlined"> add </span>
                 </button>
@@ -529,15 +578,18 @@ export default function Home() {
             Entrega e taxas serão calculadas no checkout
           </p>
 
-          <a className="minicart-drawer__footer__cta1 cta" href="/templates/checkout/cart.html"
-          >Finalizar pedido</a
+          <a
+            className="minicart-drawer__footer__cta1 cta"
+            href="/templates/checkout/cart.html"
           >
+            Finalizar pedido
+          </a>
           <button
             id="minicartCloseButton"
             className="minicart-drawer__footer__cta2 cta cta2"
           >
-            <span className="material-symbols-outlined"> arrow_back </span> Continuar
-            comprando
+            <span className="material-symbols-outlined"> arrow_back </span>{" "}
+            Continuar comprando
           </button>
         </div>
       </div>
