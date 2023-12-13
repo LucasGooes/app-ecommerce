@@ -7,4 +7,6 @@ export interface Produto {
   preco: number;
   disponivel: string;
   dataCadastro: string;
+  srcImagem: string;
+  srcImagemS: string;
 }

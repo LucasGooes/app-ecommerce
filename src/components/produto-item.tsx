@@ -1,6 +1,7 @@
 "use client";
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 import { Produto } from "@/types/Produto";
+import Image from "next/image";
 import Link from "next/link";
 
 interface ProdutoItemProps {
@@ -12,6 +13,9 @@ export function ProdutoItem({ produto }: ProdutoItemProps) {
   const adicionarItemNoCarrinho = () => {
     setProdutosSelecionado((items) => [...items, { produto, quantidade: 1 }]);
   };
+
+  console.log(produto);
+
   return (
     <li className="shelf__list__item" id={produto.id.toString()}>
       <div className="product-card">
@@ -20,9 +24,11 @@ export function ProdutoItem({ produto }: ProdutoItemProps) {
           href={`/produto/${produto.id}`}
         ></Link>
         <div className="product-card__image">
-          <img
-            src="https://fakeimg.pl/227x227/"
+          <Image
+            src={produto.srcImagem}
             alt=""
+            width={227}
+            height={227}
             className="product-card__image__image"
           />
         </div>

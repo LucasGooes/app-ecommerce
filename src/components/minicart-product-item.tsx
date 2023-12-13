@@ -1,5 +1,6 @@
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 import { Produto } from "@/types/Produto";
+import Image from "next/image";
 
 interface MinicartProductItemProps {
   content: {
@@ -17,32 +18,20 @@ export function MinicartProductItem({ content }: MinicartProductItemProps) {
   };
 
   const handleClickPlus = () => {
-    setProdutosSelecionado((items) =>
-      items.map((item) => {
-        if (item.produto.id === content.produto.id) {
-          return { ...item, quantidade: item.quantidade + 1 };
-        }
-        return item;
-      })
-    );
+    console.log("fui clicado");
   };
 
   const handleClickMinus = () => {
-    setProdutosSelecionado((items) =>
-      items.map((item) => {
-        if (item.produto.id === content.produto.id) {
-          return { ...item, quantidade: item.quantidade - 1 };
-        }
-        return item;
-      })
-    );
+    console.log("fui clicado de novo");
   };
   return (
     <li className="minicart-drawer__product-list__item">
-      <img
+      <Image
         className="product-img--medium"
-        src="https://fakeimg.pl/100x100/"
+        src={content.produto.srcImagem}
         alt=""
+        width={100}
+        height={100}
       />
       <div className="minicart-drawer__product-list__infos">
         <span className="product-name--2-lines">{content.produto.nome}</span>
