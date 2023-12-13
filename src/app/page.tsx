@@ -21,7 +21,7 @@ const slickSettingsTopBar = {
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplay: true
+  autoplay: true,
 };
 
 const slickSettingsShelf1 = {
@@ -317,8 +317,6 @@ export default function Home() {
       </main>
       <Footer />
       <Minicart aberto={aberto} fechar={() => setAberto(false)} />
-
-      <div id="bgLock" className="bg-lock dn"></div>
     </>
   );
 }
