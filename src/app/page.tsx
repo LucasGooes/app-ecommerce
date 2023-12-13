@@ -12,8 +12,33 @@ import Minicart from "@/components/minicart";
 import { ProdutoItem } from "@/components/produto-item";
 import { TipBarListItem } from "@/components/tip-bar-list-item";
 import { Produto } from "@/types/Produto";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Slider from "react-slick";
+
+const slickSettingsTopBar = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true
+};
+
+const slickSettingsShelf1 = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+};
+
+const slickSettingsShelf2 = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+};
 
 export default function Home() {
   const [produtos, setProdutos] = useState<{ content: Produto[] }>({
@@ -66,15 +91,17 @@ export default function Home() {
     <>
       <div className="top-bar">
         <ul className="top-bar__text-list container">
-          <li className="top-bar__text-list__item" id="1">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
-          <li className="top-bar__text-list__item" id="2">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
-          <li className="top-bar__text-list__item" id="3">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
+          <Slider {...slickSettingsTopBar}>
+            <li className="top-bar__text-list__item" id="1">
+              <span>Lorem ipsum dolor sit amet</span>
+            </li>
+            <li className="top-bar__text-list__item" id="2">
+              <span>Lorem ipsum dolor sit amet</span>
+            </li>
+            <li className="top-bar__text-list__item" id="3">
+              <span>Lorem ipsum dolor sit amet</span>
+            </li>
+          </Slider>
         </ul>
       </div>
       <Header aberto={aberto} setAberto={setAberto} />
@@ -107,40 +134,13 @@ export default function Home() {
         <section className="shelf-container">
           <h3 className="shelf_title title">Title</h3>
           <ul className="shelf__list shelf__list-1">
-            {produtos.content.map((produto) => (
-              <>
-                <ProdutoItem produto={produto} />
-              </>
-            ))}
-            <li className="shelf__list__item">
-              <div className="product-card">
-                <Link
-                  className="product-card__link"
-                  href="/templates/index.html"
-                ></Link>
-                <div className="product-card__image">
-                  <img
-                    src="https://fakeimg.pl/227x227/"
-                    alt=""
-                    className="product-card__image__image"
-                  />
-                </div>
-                <div className="product-card__content">
-                  <h4 className="product-card__content__title">
-                    product name (max 2 lines)
-                  </h4>
-                  <span className="product-card__content__price">
-                    R$ 000,00
-                  </span>
-                  <Link
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >
-                    CTA
-                  </Link>
-                </div>
-              </div>
-            </li>
+            <Slider {...slickSettingsShelf1}>
+              {produtos.content.map((produto) => (
+                <>
+                  <ProdutoItem produto={produto} />
+                </>
+              ))}
+            </Slider>
           </ul>
         </section>
 

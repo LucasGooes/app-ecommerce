@@ -172,7 +172,6 @@ body * {
 }
 .top-bar__text-list__item {
   text-align: center;
-  display: none;
 }
 .top-bar__text-list__item.slick-slide {
   justify-content: center;

@@ -5,6 +5,7 @@ import Minicart from "@/components/minicart";
 import { Categoria } from "@/types/Categoria";
 import { Produto } from "@/types/Produto";
 import { useEffect, useState } from "react";
+import Slider from "react-slick";
 import img from "../../../global/img/imagem-teste.png";
 import "../../../global/styles/reset.css";
 import "../../../global/styles/style.css";
@@ -54,15 +55,17 @@ export default function Produto({ params }: { params: { id: string } }) {
     <>
       <div className="top-bar">
         <ul className="top-bar__text-list container">
-          <li className="top-bar__text-list__item">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
-          <li className="top-bar__text-list__item">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
-          <li className="top-bar__text-list__item">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
+          <Slider {...}>
+            <li className="top-bar__text-list__item">
+              <span>Lorem ipsum dolor sit amet</span>
+            </li>
+            <li className="top-bar__text-list__item">
+              <span>Lorem ipsum dolor sit amet</span>
+            </li>
+            <li className="top-bar__text-list__item">
+              <span>Lorem ipsum dolor sit amet</span>
+            </li>
+          </Slider>
         </ul>
       </div>
       <header className="header-container sticky0">
