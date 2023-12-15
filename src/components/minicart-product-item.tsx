@@ -10,6 +10,7 @@ interface MinicartProductItemProps {
 }
 export function MinicartProductItem({ content }: MinicartProductItemProps) {
   const { produtosSelecionados, setProdutosSelecionado } = useCarrinhoContext();
+  console.log(produtosSelecionados);
 
   const handleClickDelete = () => {
     setProdutosSelecionado((items) =>
@@ -18,7 +19,14 @@ export function MinicartProductItem({ content }: MinicartProductItemProps) {
   };
 
   const handleClickPlus = () => {
-    console.log("fui clicado");
+    setProdutosSelecionado((items) => {
+      return items.map((item) => {
+        if (item.produto.id === content.produto.id) {
+          return { ...item, quantidade: item.quantidade + 1 };
+        }
+        return item;
+      });
+    });
   };
 
   const handleClickMinus = () => {
@@ -43,9 +51,8 @@ export function MinicartProductItem({ content }: MinicartProductItemProps) {
 
       <div
         className="minicart-drawer__product-list__actions"
-        onClick={handleClickDelete}
       >
-        <button className="action-remove">
+        <button className="action-remove" onClick={handleClickDelete}>
           <span className="material-symbols-outlined"> delete </span>
         </button>
 

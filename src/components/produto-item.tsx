@@ -1,5 +1,4 @@
 "use client";
-import { adicionarItemCarrinho } from "@/actions/carrinho";
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 import { Produto } from "@/types/Produto";
 import Image from "next/image";
@@ -12,10 +11,8 @@ export function ProdutoItem({ produto }: ProdutoItemProps) {
   const { setProdutosSelecionado } = useCarrinhoContext();
 
   const handleClickAdd = async () => {
-    await adicionarItemCarrinho(produto);
+    setProdutosSelecionado((items) => [...items, { produto, quantidade: 1 }]);
   };
-
-  console.log("Renderizou ProdutoItem: ", produto);
 
   return (
     <li className="shelf__list__item" id={produto.id.toString()}>
