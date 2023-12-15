@@ -30,7 +30,14 @@ export function MinicartProductItem({ content }: MinicartProductItemProps) {
   };
 
   const handleClickMinus = () => {
-    console.log("fui clicado de novo");
+    setProdutosSelecionado((items) => {
+      return items.map((item) => {
+        if (item.produto.id === content.produto.id) {
+          return { ...item, quantidade: item.quantidade - 1 };
+        }
+        return item;
+      });
+    });
   };
   return (
     <li className="minicart-drawer__product-list__item">
@@ -49,9 +56,7 @@ export function MinicartProductItem({ content }: MinicartProductItemProps) {
         </span>
       </div>
 
-      <div
-        className="minicart-drawer__product-list__actions"
-      >
+      <div className="minicart-drawer__product-list__actions">
         <button className="action-remove" onClick={handleClickDelete}>
           <span className="material-symbols-outlined"> delete </span>
         </button>

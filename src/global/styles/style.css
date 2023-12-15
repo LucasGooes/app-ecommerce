@@ -172,6 +172,7 @@ body * {
 }
 .top-bar__text-list__item {
   text-align: center;
+  display: none;
 }
 .top-bar__text-list__item.slick-slide {
   justify-content: center;
@@ -456,6 +457,10 @@ progress::-moz-progress-bar {
   display: flex;
   width: 100%;
   gap: 16px;
+}
+
+.banner-group-with-title__list__item img {
+  border-radius: 6px;
 }
 
 .banner-group__list__item img {
@@ -869,6 +874,8 @@ progress::-moz-progress-bar {
   overflow: hidden;
   text-overflow: ellipsis;
   text-overflow: -o-ellipsis-lastline;
+  max-width: 106.4px;
+  width: 106.4px;
 }
 
 .minicart-drawer__product-list__infos__price {

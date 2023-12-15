@@ -11,7 +11,19 @@ export function ProdutoItem({ produto }: ProdutoItemProps) {
   const { setProdutosSelecionado } = useCarrinhoContext();
 
   const handleClickAdd = async () => {
-    setProdutosSelecionado((items) => [...items, { produto, quantidade: 1 }]);
+    // verificar se o id ja existe no array para atualizar a quantidade
+    setProdutosSelecionado((items) => {
+      const item = items.find((item) => item.produto.id === produto.id);
+      if (item) {
+        return items.map((item) => {
+          if (item.produto.id === produto.id) {
+            return { ...item, quantidade: item.quantidade + 1 };
+          }
+          return item;
+        });
+      }
+      return [...items, { produto, quantidade: 1 }];
+    });
   };
 
   return (
