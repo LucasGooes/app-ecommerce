@@ -135,9 +135,9 @@ export default function Home() {
           <h3 className="shelf_title title">Title</h3>
           <ul className="shelf__list shelf__list-1">
             <Slider {...slickSettingsShelf1}>
-              {produtos.content.map((produto) => (
+              {produtos.content.map((produto, index) => (
                 <>
-                  <ProdutoItem produto={produto} />
+                  <ProdutoItem key={index} produto={produto} />
                 </>
               ))}
             </Slider>

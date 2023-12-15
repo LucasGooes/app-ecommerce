@@ -1,6 +1,8 @@
 "use client";
 
-import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
+import { obterItensCarrinho } from "@/actions/carrinho";
+import { Produto } from "@/types/Produto";
+import { useEffect, useState } from "react";
 import { MinicartProductItem } from "./minicart-product-item";
 
 interface MinicartProps {
@@ -8,7 +10,17 @@ interface MinicartProps {
   fechar: () => void;
 }
 export default function Minicart({ aberto, fechar }: MinicartProps) {
-  const { produtosSelecionados } = useCarrinhoContext();
+  const [itens, setItens] = useState<
+    { produto: Produto; quantidade: number }[]
+  >([]);
+  useEffect(() => {
+    const obterItensCarrinhoF = async () => {
+      const carrinhoString = await obterItensCarrinho();
+      setItens(carrinhoString.itens);
+    };
+    obterItensCarrinhoF();
+  }, []);
+
   const cls = `minicart-drawer${aberto ? " open" : " dn"}`;
   const clsBglock = `bg-lock${aberto ? " df" : " dn"}`;
   return (
@@ -26,7 +38,7 @@ export default function Minicart({ aberto, fechar }: MinicartProps) {
         </div>
 
         <ul id="minicartList" className="minicart-drawer__product-list">
-          {produtosSelecionados.map((content) => (
+          {itens.map((content) => (
             <MinicartProductItem key={content.produto.id} content={content} />
           ))}
         </ul>
@@ -36,7 +48,7 @@ export default function Minicart({ aberto, fechar }: MinicartProps) {
             <span className="minicart-drawer__footer__total">Total:</span>
             <span className="minicart-drawer__footer__total">
               R${" "}
-              {produtosSelecionados
+              {itens
                 .reduce(
                   (acc, item) => acc + item.produto.preco * item.quantidade,
                   0

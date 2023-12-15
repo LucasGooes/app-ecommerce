@@ -1,4 +1,5 @@
 "use client";
+import { adicionarItemCarrinho } from "@/actions/carrinho";
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 import { Produto } from "@/types/Produto";
 import Image from "next/image";
@@ -10,11 +11,11 @@ interface ProdutoItemProps {
 export function ProdutoItem({ produto }: ProdutoItemProps) {
   const { setProdutosSelecionado } = useCarrinhoContext();
 
-  const adicionarItemNoCarrinho = () => {
-    setProdutosSelecionado((items) => [...items, { produto, quantidade: 1 }]);
+  const handleClickAdd = async () => {
+    await adicionarItemCarrinho(produto);
   };
 
-  console.log(produto);
+  console.log("Renderizou ProdutoItem: ", produto);
 
   return (
     <li className="shelf__list__item" id={produto.id.toString()}>
@@ -25,7 +26,7 @@ export function ProdutoItem({ produto }: ProdutoItemProps) {
         ></Link>
         <div className="product-card__image">
           <Image
-            src={produto.srcImagem}
+            src={produto.srcImagem || "https://fakeimg.pl/227x227/"}
             alt=""
             width={227}
             height={227}
@@ -38,7 +39,7 @@ export function ProdutoItem({ produto }: ProdutoItemProps) {
             {"R$ " + produto.preco}{" "}
           </span>
           <button
-            onClick={adicionarItemNoCarrinho}
+            onClick={handleClickAdd}
             className="cta product-card__content__buy-button"
           >
             CTA
