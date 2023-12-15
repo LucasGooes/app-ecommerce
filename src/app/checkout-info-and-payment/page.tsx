@@ -5,14 +5,36 @@ import { HeaderCheckout } from "@/components/header-checkout";
 import { ResumoItem } from "@/components/resumo-item";
 import { TopBar } from "@/components/topbar";
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
+
 import Link from "next/link";
-import { useState } from "react";
+
+import { useForm, zodResolver } from "@mantine/form";
+import { z } from "zod";
 import "../../global/styles/reset.css";
 import "../../global/styles/style.css";
 
+const clienteSchema = z.object({
+  nomeCliente: z.string(),
+  emailCliente: z.string().email(),
+  telefoneCliente: z.string(),
+});
+
 export default function CheckoutInfoAndPayment() {
-  const [pedido, setPedido] = useState("");
   const { produtosSelecionados } = useCarrinhoContext();
+
+  const form = useForm({
+    initialValues: {
+      nomeCliente: "",
+      emailCliente: "",
+      telefoneCliente: "",
+      cep: "",
+      logradouro: "",
+      complemento: "",
+      bairro: "",
+      numero: "",
+    },
+    validate: zodResolver(clienteSchema),
+  });
 
   const submeterPedido = () => {
     fetch("http://localhost:8085/pedido/submeter", {
@@ -24,17 +46,20 @@ export default function CheckoutInfoAndPayment() {
     }).then((response) => response.json());
   };
 
-  const handleSubmit = () => {
-    submeterPedido();
-  };
+  // const handleFormSubmit = () => {
+  //   submeterPedido();
+  // };
 
   return (
     <>
       <TopBar />
-      <HeaderCheckout />
+      <HeaderCheckout info />
 
       <main style={{ width: "100%" }}>
-        <form onSubmit={handleSubmit} className="checkout-container container">
+        <form
+          onSubmit={form.onSubmit((values) => console.log(values))}
+          className="checkout-container container"
+        >
           <div className="checkout-form-boxes">
             <div className="checkout-box forms">
               <span className="checkout-form-boxes__title">
@@ -49,9 +74,9 @@ export default function CheckoutInfoAndPayment() {
                   <input
                     required
                     type="text"
-                    name=""
                     id="checkoutEmail"
                     placeholder="email@exemplo.com"
+                    {...form.getInputProps("emailCliente")}
                   />
                 </div>
               </div>
@@ -64,9 +89,9 @@ export default function CheckoutInfoAndPayment() {
                   <input
                     required
                     type="text"
-                    name=""
                     id="fullName"
                     placeholder="Ex.: José da Silva"
+                    {...form.getInputProps("nomeCliente")}
                   />
                 </div>
               </div>
@@ -79,9 +104,9 @@ export default function CheckoutInfoAndPayment() {
                   <input
                     required
                     type="text"
-                    name=""
                     id="phone"
                     placeholder="Ex.: (00) 00000-0000"
+                    {...form.getInputProps("telefoneCliente")}
                   />
                 </div>
               </div>
@@ -97,6 +122,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="cep"
                     placeholder="Ex.: 00000-000"
+                    {...form.getInputProps("cep")}
                   />
                 </div>
 
@@ -110,6 +136,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="adress"
                     placeholder="Ex.: Rua de exemplo"
+                    {...form.getInputProps("logradouro")}
                   />
                 </div>
               </div>
@@ -125,6 +152,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="adressNumber"
                     placeholder="Número"
+                    {...form.getInputProps("numero")}
                   />
                 </div>
 
@@ -141,6 +169,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="adressNeighborhood"
                     placeholder="Bairro"
+                    {...form.getInputProps("bairro")}
                   />
                 </div>
 
@@ -154,6 +183,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="adressComplement"
                     placeholder="Ex.: Ap 14"
+                    {...form.getInputProps("complemento")}
                   />
                 </div>
               </div>
