@@ -8,7 +8,6 @@ import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 
 import Link from "next/link";
 
-import { Carrinho } from "@/types/Carrinho";
 import { useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
 import "../../global/styles/reset.css";
@@ -28,7 +27,7 @@ const pedidoSchema = z
     numeroCartao: z.string(),
     codigoSeguranca: z.string(),
     dataVencimento: z.string(),
-    numeroParcelas: z.string(),
+    numeroParcelas: z.coerce.number(),
   })
   .transform(
     ({
@@ -53,7 +52,7 @@ const pedidoSchema = z
         numero,
       };
       const pagamento = {
-        tipoPagamento: 1,
+        tpoPagamento: 1,
         pagamentoComCartao: {
           numeroCartao,
           codigoSeguranca,
@@ -67,7 +66,14 @@ const pedidoSchema = z
         telefoneCliente,
         endereco,
         pagamento,
-        carrinho: {} as Carrinho,
+        carrinho: {} as {
+          valorTotalPedido: number;
+          produtos: {
+            id: number;
+            codigo: number;
+            quantidade: number;
+          }[];
+        },
       };
     }
   );
@@ -89,7 +95,7 @@ export default function CheckoutInfoAndPayment() {
       numeroCartao: "",
       codigoSeguranca: "",
       dataVencimento: "",
-      numeroParcelas: "",
+      numeroParcelas: "1",
     },
     validate: zodResolver(pedidoSchema),
   });
@@ -97,22 +103,35 @@ export default function CheckoutInfoAndPayment() {
   const handleFormSubmit = async (values: typeof form.values) => {
     const pedido = pedidoSchema.parse(values);
     pedido.carrinho = {
-      itens: produtosSelecionados,
       valorTotalPedido: produtosSelecionados.reduce(
         (acc, item) => acc + item.produto.preco * item.quantidade,
         0
       ),
+      produtos: produtosSelecionados.map((item) => ({
+        id: item.produto.id,
+        codigo: item.produto.codigo,
+        quantidade: item.quantidade,
+      })),
     };
 
-    console.log("submit", pedido);
-
-    // fetch("http://localhost:8085/pedido/submeter", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({}),
-    // }).then((response) => response.json());
+    fetch("http://localhost:8085/pedido/submeter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pedido),
+    })
+      .then((response) => {
+        if (response.status == 201) {
+          console.log("Pedido submetido com sucesso");
+        } else {
+          console.log("Erro ao submeter o pedido");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("Erro ao submeter o pedido:", error);
+      });
   };
 
   return (
