@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CategoriaComponent } from "./categoria";
 
-interface HeaderCheckoutProps {}
-export function HeaderCheckout(props: HeaderCheckoutProps) {
+interface HeaderCheckoutProps {
+  info?: boolean;
+}
+export function HeaderCheckout({ info }: HeaderCheckoutProps) {
   const [categorias, setCategorias] = useState<{ content: Categoria[] }>({
     content: [],
   });
@@ -42,7 +44,11 @@ export function HeaderCheckout(props: HeaderCheckoutProps) {
             <label className="checkout-text-1" htmlFor="checkoutProgress">
               Finalizar pedido
             </label>
-            <progress id="checkoutProgress" value="50" max="100"></progress>
+            <progress
+              id="checkoutProgress"
+              value={info ? 90 : 50}
+              max="100"
+            ></progress>
           </div>
 
           <div className="header-actions">
@@ -59,10 +65,8 @@ export function HeaderCheckout(props: HeaderCheckoutProps) {
       <div className="header-menu">
         <nav className="header-menu__inner container">
           <ul className="header-menu__inner__list">
-            {categorias.content.map((categoria) => (
-              <>
-                <CategoriaComponent categoria={categoria} />
-              </>
+            {categorias.content.map((categoria, index) => (
+              <CategoriaComponent categoria={categoria} key={index} />
             ))}
           </ul>
         </nav>

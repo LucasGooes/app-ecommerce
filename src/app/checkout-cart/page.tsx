@@ -1,6 +1,7 @@
 "use client";
 
-import { HeaderCheckout } from '@/components/header-checkout';
+import { Footer } from "@/components/footer";
+import { HeaderCheckout } from "@/components/header-checkout";
 import { TopBar } from "@/components/topbar";
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 import Link from "next/link";
@@ -148,120 +149,13 @@ export default function CheckoutCart() {
           <Link className="cta checkout" href="/checkout-info-and-payment">
             Continuar
           </Link>
-          <a className="cta2 checkout" href="/">
+          <Link className="cta2 checkout" href="/">
             Adicionar outros produtos
-          </a>
+          </Link>
         </div>
       </main>
 
-      <footer className="footer-container">
-        <div className="footer-main-content">
-          <div className="footer-main-content container">
-            <div className="footer-main-content__about-box">
-              <img
-                src="https://fakeimg.pl/120x70/"
-                alt=""
-                className="footer-main-content__about-box__logo"
-              />
-              <p className="footer-main-content__about-box__text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur pretium non purus id suscipit.
-              </p>
-            </div>
-            <ul className="footer-menu footer-menu--1">
-              <li className="footer-menu__item">Menu</li>
-              <li className="footer-menu__item">Menu Item</li>
-              <li className="footer-menu__item">Menu Item</li>
-              <li className="footer-menu__item">Menu Item</li>
-            </ul>
-
-            <ul className="footer-menu footer-menu--2">
-              <li className="footer-menu__item">Menu</li>
-              <li className="footer-menu__item">Menu Item</li>
-              <li className="footer-menu__item">Menu Item</li>
-              <li className="footer-menu__item">Menu Item</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="footer-legal-info">
-          <div className="container">
-            <p className="footer-legal-info__text">
-              Informação de desenvolvimento
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      <div id="minicartDrawer" className="minicart-drawer dn">
-        <div className="minicart-drawer__header">
-          <p className="minicart-drawer__header__title">Meu carrinho</p>
-          <button id="minicartClose" className="minicart-drawer__header__close">
-            <span className="material-symbols-outlined"> close </span>
-          </button>
-        </div>
-
-        <ul id="minicartList" className="minicart-drawer__product-list">
-          <li className="minicart-drawer__product-list__item">
-            <img
-              className="product-img--medium"
-              src="https://fakeimg.pl/100x100/"
-              alt=""
-            />
-            <div className="minicart-drawer__product-list__infos">
-              <span className="product-name--2-lines">
-                Nome do produto em até duas linhas
-              </span>
-
-              <span className="minicart-drawer__product-list__infos__price">
-                R$ 000,00
-              </span>
-            </div>
-
-            <div className="minicart-drawer__product-list__actions">
-              <button className="action-remove">
-                <span className="material-symbols-outlined"> delete </span>
-              </button>
-
-              <div className="qtt-input">
-                <button id="minusc">
-                  <span className="material-symbols-outlined"> remove </span>
-                </button>
-                <input type="number" value="1" id="inputc" minLength="1" />
-                <button id="plusc">
-                  <span className="material-symbols-outlined"> add </span>
-                </button>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <div className="minicart-drawer__footer">
-          <div className="minicart-drawer__footer__total">
-            <span className="minicart-drawer__footer__total">Total:</span>
-            <span className="minicart-drawer__footer__total">R$ 000,00</span>
-          </div>
-
-          <p className="minicart-drawer__footer__info">
-            Entrega e taxas serão calculadas no checkout
-          </p>
-
-          <a
-            className="minicart-drawer__footer__cta1 cta"
-            href="/templates/checkout/cart.html"
-          >
-            Finalizar pedido
-          </a>
-          <button
-            id="minicartCloseButton"
-            className="minicart-drawer__footer__cta2 cta cta2"
-          >
-            <span className="material-symbols-outlined"> arrow_back </span>{" "}
-            Continuar comprando
-          </button>
-        </div>
-      </div>
-      <div id="bgLock" className="bg-lock dn"></div>
+      <Footer />
     </>
   );
 }
