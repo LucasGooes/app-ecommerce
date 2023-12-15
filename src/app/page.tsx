@@ -11,18 +11,10 @@ import { Header } from "@/components/header";
 import Minicart from "@/components/minicart";
 import { ProdutoItem } from "@/components/produto-item";
 import { TipBarListItem } from "@/components/tip-bar-list-item";
+import { TopBar } from "@/components/topbar";
 import { Produto } from "@/types/Produto";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-
-const slickSettingsTopBar = {
-  dots: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-};
 
 const slickSettingsShelf1 = {
   dots: false,
@@ -87,23 +79,28 @@ export default function Home() {
   if (produtos.content.length === 0) {
     return <div>Carregando...</div>;
   }
+
+  // separar 20 produtos em 3 arrays
+  // Assuming you have an array of 20 products called "produtos"
+
+  // Calculate the number of products per array
+  const productsPerArray = Math.ceil(produtos.content.length / 3);
+
+  // Create an array of arrays to store the separated products
+  const separatedProducts = [];
+
+  // Loop through the products and separate them into arrays
+  for (let i = 0; i < produtos.content.length; i += productsPerArray) {
+    const productsSlice = produtos.content.slice(i, i + productsPerArray);
+    separatedProducts.push(productsSlice);
+  }
+
+  // Now you have 3 arrays with the separated products
+  console.log(separatedProducts);
+
   return (
     <>
-      <div className="top-bar">
-        <ul className="top-bar__text-list container">
-          <Slider {...slickSettingsTopBar}>
-            <li className="top-bar__text-list__item" id="1">
-              <span>Lorem ipsum dolor sit amet</span>
-            </li>
-            <li className="top-bar__text-list__item" id="2">
-              <span>Lorem ipsum dolor sit amet</span>
-            </li>
-            <li className="top-bar__text-list__item" id="3">
-              <span>Lorem ipsum dolor sit amet</span>
-            </li>
-          </Slider>
-        </ul>
-      </div>
+      <TopBar />
       <Header aberto={aberto} setAberto={setAberto} />
 
       <main className="home-container container" style={{ width: "100%" }}>
@@ -135,7 +132,7 @@ export default function Home() {
           <h3 className="shelf_title title">Title</h3>
           <ul className="shelf__list shelf__list-1">
             <Slider {...slickSettingsShelf1}>
-              {produtos.content.map((produto, index) => (
+              {separatedProducts[0].map((produto, index) => (
                 <>
                   <ProdutoItem key={index} produto={produto} />
                 </>
@@ -182,93 +179,13 @@ export default function Home() {
         <section className="shelf-container-2">
           <h3 className="shelf_title title">Title</h3>
           <ul className="shelf__list shelf__list-2">
-            <li className="shelf__list__item">
-              <div className="product-card">
-                <a
-                  className="product-card__link"
-                  href="/templates/index.html"
-                ></a>
-                <div className="product-card__image">
-                  <img
-                    src="https://fakeimg.pl/227x227/"
-                    alt=""
-                    className="product-card__image__image"
-                  />
-                </div>
-                <div className="product-card__content">
-                  <h4 className="product-card__content__title">
-                    product name (max 2 lines)
-                  </h4>
-                  <span className="product-card__content__price">
-                    R$ 000,00
-                  </span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >
-                    CTA
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li className="shelf__list__item">
-              <div className="product-card">
-                <a
-                  className="product-card__link"
-                  href="/templates/index.html"
-                ></a>
-                <div className="product-card__image">
-                  <img
-                    src="https://fakeimg.pl/227x227/"
-                    alt=""
-                    className="product-card__image__image"
-                  />
-                </div>
-                <div className="product-card__content">
-                  <h4 className="product-card__content__title">
-                    product name (max 2 lines)
-                  </h4>
-                  <span className="product-card__content__price">
-                    R$ 000,00
-                  </span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >
-                    CTA
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li className="shelf__list__item">
-              <div className="product-card">
-                <a
-                  className="product-card__link"
-                  href="/templates/index.html"
-                ></a>
-                <div className="product-card__image">
-                  <img
-                    src="https://fakeimg.pl/227x227/"
-                    alt=""
-                    className="product-card__image__image"
-                  />
-                </div>
-                <div className="product-card__content">
-                  <h4 className="product-card__content__title">
-                    product name (max 2 lines)
-                  </h4>
-                  <span className="product-card__content__price">
-                    R$ 000,00
-                  </span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >
-                    CTA
-                  </a>
-                </div>
-              </div>
-            </li>
+            <Slider {...slickSettingsShelf1}>
+              {separatedProducts[1].map((produto, index) => (
+                <>
+                  <ProdutoItem key={index} produto={produto} />
+                </>
+              ))}
+            </Slider>
           </ul>
         </section>
 
@@ -283,35 +200,13 @@ export default function Home() {
         <section className="shelf-container-3">
           <h3 className="shelf_title title">Title</h3>
           <ul className="shelf__list shelf__list-3">
-            <li className="shelf__list__item">
-              <div className="product-card">
-                <a
-                  className="product-card__link"
-                  href="/templates/index.html"
-                ></a>
-                <div className="product-card__image">
-                  <img
-                    src="https://fakeimg.pl/227x227/"
-                    alt=""
-                    className="product-card__image__image"
-                  />
-                </div>
-                <div className="product-card__content">
-                  <h4 className="product-card__content__title">
-                    product name (max 2 lines)
-                  </h4>
-                  <span className="product-card__content__price">
-                    R$ 000,00
-                  </span>
-                  <a
-                    className="cta product-card__content__buy-button"
-                    href="/templates/pdp.html"
-                  >
-                    CTA
-                  </a>
-                </div>
-              </div>
-            </li>
+            <Slider {...slickSettingsShelf1}>
+              {separatedProducts[2].map((produto, index) => (
+                <>
+                  <ProdutoItem key={index} produto={produto} />
+                </>
+              ))}
+            </Slider>
           </ul>
         </section>
       </main>

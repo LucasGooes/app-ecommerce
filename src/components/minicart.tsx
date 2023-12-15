@@ -1,6 +1,7 @@
 "use client";
 
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
+import Link from "next/link";
 import { MinicartProductItem } from "./minicart-product-item";
 
 interface MinicartProps {
@@ -50,12 +51,12 @@ export default function Minicart({ aberto, fechar }: MinicartProps) {
             Entrega e taxas serão calculadas no checkout
           </p>
 
-          <a
+          <Link
             className="minicart-drawer__footer__cta1 cta"
-            href="/templates/checkout/cart.html"
+            href="/checkout-info-and-payment"
           >
             Finalizar pedido
-          </a>
+          </Link>
           <button
             id="minicartCloseButton"
             className="minicart-drawer__footer__cta2 cta cta2"
