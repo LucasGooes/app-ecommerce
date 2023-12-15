@@ -8,16 +8,69 @@ import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 
 import Link from "next/link";
 
+import { Carrinho } from "@/types/Carrinho";
 import { useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
 import "../../global/styles/reset.css";
 import "../../global/styles/style.css";
 
-const clienteSchema = z.object({
-  nomeCliente: z.string(),
-  emailCliente: z.string().email(),
-  telefoneCliente: z.string(),
-});
+const pedidoSchema = z
+  .object({
+    nomeCliente: z.string(),
+    emailCliente: z.string().email(),
+    telefoneCliente: z.string(),
+    cep: z.string(),
+    logradouro: z.string(),
+    complemento: z.string(),
+    bairro: z.string(),
+    numero: z.coerce.number(),
+    nomeCartao: z.string(),
+    numeroCartao: z.string(),
+    codigoSeguranca: z.string(),
+    dataVencimento: z.string(),
+    numeroParcelas: z.string(),
+  })
+  .transform(
+    ({
+      nomeCliente,
+      emailCliente,
+      telefoneCliente,
+      cep,
+      logradouro,
+      complemento,
+      bairro,
+      numero,
+      numeroCartao,
+      codigoSeguranca,
+      dataVencimento,
+      numeroParcelas,
+    }) => {
+      const endereco = {
+        cep,
+        logradouro,
+        complemento,
+        bairro,
+        numero,
+      };
+      const pagamento = {
+        tipoPagamento: 1,
+        pagamentoComCartao: {
+          numeroCartao,
+          codigoSeguranca,
+          dataVencimento,
+          numeroParcelas,
+        },
+      };
+      return {
+        nomeCliente,
+        emailCliente,
+        telefoneCliente,
+        endereco,
+        pagamento,
+        carrinho: {} as Carrinho,
+      };
+    }
+  );
 
 export default function CheckoutInfoAndPayment() {
   const { produtosSelecionados } = useCarrinhoContext();
@@ -32,23 +85,35 @@ export default function CheckoutInfoAndPayment() {
       complemento: "",
       bairro: "",
       numero: "",
+      nomeCartao: "",
+      numeroCartao: "",
+      codigoSeguranca: "",
+      dataVencimento: "",
+      numeroParcelas: "",
     },
-    validate: zodResolver(clienteSchema),
+    validate: zodResolver(pedidoSchema),
   });
 
-  const submeterPedido = () => {
-    fetch("http://localhost:8085/pedido/submeter", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    }).then((response) => response.json());
-  };
+  const handleFormSubmit = async (values: typeof form.values) => {
+    const pedido = pedidoSchema.parse(values);
+    pedido.carrinho = {
+      itens: produtosSelecionados,
+      valorTotalPedido: produtosSelecionados.reduce(
+        (acc, item) => acc + item.produto.preco * item.quantidade,
+        0
+      ),
+    };
 
-  // const handleFormSubmit = () => {
-  //   submeterPedido();
-  // };
+    console.log("submit", pedido);
+
+    // fetch("http://localhost:8085/pedido/submeter", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({}),
+    // }).then((response) => response.json());
+  };
 
   return (
     <>
@@ -57,7 +122,7 @@ export default function CheckoutInfoAndPayment() {
 
       <main style={{ width: "100%" }}>
         <form
-          onSubmit={form.onSubmit((values) => console.log(values))}
+          onSubmit={form.onSubmit(handleFormSubmit)}
           className="checkout-container container"
         >
           <div className="checkout-form-boxes">
@@ -205,6 +270,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="cardNumber"
                     placeholder="Ex.: 0000 0000 0000 0000"
+                    {...form.getInputProps("numeroCartao")}
                   />
                 </div>
               </div>
@@ -220,6 +286,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="cardHolder"
                     placeholder="Ex.: José da Silva"
+                    {...form.getInputProps("nomeCartao")}
                   />
                 </div>
               </div>
@@ -232,7 +299,11 @@ export default function CheckoutInfoAndPayment() {
                   >
                     Parcelas
                   </label>
-                  <select name="checkoutInstallments" id="checkoutInstallments">
+                  <select
+                    {...form.getInputProps("numeroParcelas")}
+                    name="checkoutInstallments"
+                    id="checkoutInstallments"
+                  >
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -244,7 +315,13 @@ export default function CheckoutInfoAndPayment() {
                   <label className="checkout-text-1" htmlFor="expirationDate">
                     Validade
                   </label>
-                  <input required type="date" name="" id="expirationDate" />
+                  <input
+                    required
+                    type="date"
+                    name=""
+                    id="expirationDate"
+                    {...form.getInputProps("dataVencimento")}
+                  />
                 </div>
               </div>
 
@@ -259,6 +336,7 @@ export default function CheckoutInfoAndPayment() {
                     name=""
                     id="cvv"
                     placeholder="Ex.: 000"
+                    {...form.getInputProps("codigoSeguranca")}
                   />
                 </div>
 
