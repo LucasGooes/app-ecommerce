@@ -6,7 +6,7 @@ export function Footer(props: FooterProps) {
         <div className="footer-main-content container">
           <div className="footer-main-content__about-box">
             <img
-              src="https://fakeimg.pl/120x70/"
+              src="https://i.ibb.co/1XHf49X/logo-bg-2.png"
               alt=""
               className="footer-main-content__about-box__logo"
             />

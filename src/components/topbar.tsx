@@ -16,13 +16,13 @@ export function TopBar(props: TopBarProps) {
       <ul className="top-bar__text-list container">
         <Slider {...slickSettingsTopBar}>
           <li className="top-bar__text-list__item" id="1">
-            <span>Lorem ipsum dolor sit amet</span>
+            <span>Fametro Farma</span>
           </li>
           <li className="top-bar__text-list__item" id="2">
-            <span>Lorem ipsum dolor sit amet</span>
+            <span>20% de desconto para o seu primeiro pedido</span>
           </li>
           <li className="top-bar__text-list__item" id="3">
-            <span>Lorem ipsum dolor sit amet</span>
+            <span>Tudo pela metade do dobro!</span>
           </li>
         </Slider>
       </ul>

@@ -36,7 +36,7 @@ export function HeaderCheckout({ info, info2 }: HeaderCheckoutProps) {
           <Link href="/">
             <img
               className="header-main-content__inner-container__logo"
-              src="https://fakeimg.pl/120x70/"
+              src="https://i.ibb.co/m8FmRgz/logo-no-bg.png"
               alt=""
             />
           </Link>

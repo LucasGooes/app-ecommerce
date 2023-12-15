@@ -28,7 +28,7 @@ const slickSettingsShelf2 = {
   dots: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 4,
+  slidesToShow: 1,
   slidesToScroll: 1,
 };
 
@@ -106,30 +106,32 @@ export default function Home() {
       <main className="home-container container" style={{ width: "100%" }}>
         <section className="banner-slider" style={{ width: "100%" }}>
           <ul className="banner-slider__list" style={{ width: "100%" }}>
-            {Array.from({ length: 3 }).map((_, index) => (
-              <BannerSliderListItem />
-            ))}
+            <Slider {...slickSettingsShelf2}>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <BannerSliderListItem key={index} index={index} />
+              ))}
+            </Slider>
           </ul>
         </section>
 
         <section className="tip-bar-container">
           <ul className="tip-bar__list">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <TipBarListItem />
+            {Array.from({ length: 5 }).map((_, index) => (
+              <TipBarListItem key={index} index={index} />
             ))}
           </ul>
         </section>
 
         <section className="banner-group-container">
           <ul className="banner-group__list">
-            {Array.from({ length: 3 }).map((_, index) => (
-              <BannerGroupListItem />
+            {Array.from({ length: 4 }).map((_, index) => (
+              <BannerGroupListItem key={index} index={index} />
             ))}
           </ul>
         </section>
 
         <section className="shelf-container">
-          <h3 className="shelf_title title">Title</h3>
+          <h3 className="shelf_title title">Compre</h3>
           <ul className="shelf__list shelf__list-1">
             <Slider {...slickSettingsShelf1}>
               {separatedProducts[0].map((produto, index) => (
@@ -144,40 +146,40 @@ export default function Home() {
         <section className="banner-group-container banner-group-container--2">
           <ul className="banner-group__list banner-group__list--2">
             <li className="banner-group-with-title__list__item banner-group__list__item--2">
-              <img src="https://fakeimg.pl/578x320/" alt="" />
+              <img src="https://i.ibb.co/P9djZwd/dual-banner-1.png" alt="" />
             </li>
             <li className="banner-group-with-title__list__item banner-group__list__item--2">
-              <img src="https://fakeimg.pl/578x320/" alt="" />
+              <img src="https://i.ibb.co/Qfs6Fh8/dual-banner-2.png" alt="" />
             </li>
           </ul>
         </section>
 
         <section className="banner-group-with-title-container">
-          <h3 className="banner-group-with-title__title title">Title</h3>
+          <h3 className="banner-group-with-title__title title">Marcas</h3>
           <ul className="banner-group__list banner-group-with-title__list">
             <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
+              <img src="https://i.ibb.co/L5sPkL0/brands-1.png" alt="" />
             </li>
             <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
+              <img src="https://i.ibb.co/6X5FRMB/brands-2.png" alt="" />
             </li>
             <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
+              <img src="https://i.ibb.co/8jKd9wx/brands-3.png" alt="" />
             </li>
             <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
+              <img src="https://i.ibb.co/qBkDtVb/brands-4.png" alt="" />
             </li>
             <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
+              <img src="https://i.ibb.co/Rg2HDmd/brands-5.png" alt="" />
             </li>
             <li className="banner-group-with-title__list__item">
-              <img src="https://fakeimg.pl/169x100/" alt="" />
+              <img src="https://i.ibb.co/s620Wws/brands-6.png" alt="" />
             </li>
           </ul>
         </section>
 
         <section className="shelf-container-2">
-          <h3 className="shelf_title title">Title</h3>
+          <h3 className="shelf_title title">Produtos em promocinha</h3>
           <ul className="shelf__list shelf__list-2">
             <Slider {...slickSettingsShelf1}>
               {separatedProducts[1].map((produto, index) => (
@@ -196,13 +198,16 @@ export default function Home() {
         <section className="banner-group-container banner-group-container--3">
           <ul className="banner-group__list banner-group__list--3">
             <li className="banner-group-with-title__list__item banner-group__list__item--3">
-              <img src="https://fakeimg.pl/1172x360/" alt="" />
+              <img
+                src="https://i.ibb.co/bXLwSDf/secondary-banner-1.png"
+                alt=""
+              />
             </li>
           </ul>
         </section>
 
         <section className="shelf-container-3">
-          <h3 className="shelf_title title">Title</h3>
+          <h3 className="shelf_title title">Para Farmácias</h3>
           <ul className="shelf__list shelf__list-3">
             <Slider {...slickSettingsShelf1}>
               {separatedProducts[2].map((produto, index) => (

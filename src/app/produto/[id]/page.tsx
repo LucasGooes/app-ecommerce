@@ -175,11 +175,11 @@ export default function Produto({ params }: { params: { id: string } }) {
         </section>
 
         <section>
-          <img src="https://fakeimg.pl/1172x360/" alt="" />
+          <img src="https://i.ibb.co/bXLwSDf/secondary-banner-1.png" alt="" />
         </section>
 
         <section className="shelf-container">
-          <h3 className="shelf_title title">Title</h3>
+          <h3 className="shelf_title title">Interessados</h3>
           <ul className="shelf__list shelf__list-1">
             <Slider {...slickSettingsShelf1}>
               {produtos.content.map((item, index) => (
