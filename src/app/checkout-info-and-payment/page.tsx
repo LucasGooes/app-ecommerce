@@ -9,6 +9,7 @@ import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
 import Link from "next/link";
 
 import { useForm, zodResolver } from "@mantine/form";
+import { useRouter } from "next/navigation";
 import { z } from "zod";
 import "../../global/styles/reset.css";
 import "../../global/styles/style.css";
@@ -79,7 +80,9 @@ const pedidoSchema = z
   );
 
 export default function CheckoutInfoAndPayment() {
-  const { produtosSelecionados } = useCarrinhoContext();
+  const { produtosSelecionados, setProdutosSelecionado } = useCarrinhoContext();
+
+  const router = useRouter();
 
   const form = useForm({
     initialValues: {
@@ -124,6 +127,9 @@ export default function CheckoutInfoAndPayment() {
       .then((response) => {
         if (response.status == 201) {
           console.log("Pedido submetido com sucesso");
+          form.reset();
+          setProdutosSelecionado([]);
+          router.push("/order-placed");
         } else {
           console.log("Erro ao submeter o pedido");
         }

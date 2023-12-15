@@ -5,8 +5,9 @@ import { CategoriaComponent } from "./categoria";
 
 interface HeaderCheckoutProps {
   info?: boolean;
+  info2?: boolean;
 }
-export function HeaderCheckout({ info }: HeaderCheckoutProps) {
+export function HeaderCheckout({ info, info2 }: HeaderCheckoutProps) {
   const [categorias, setCategorias] = useState<{ content: Categoria[] }>({
     content: [],
   });
@@ -46,7 +47,7 @@ export function HeaderCheckout({ info }: HeaderCheckoutProps) {
             </label>
             <progress
               id="checkoutProgress"
-              value={info ? 90 : 50}
+              value={info ? (info2 ? 100 : 90) : 50}
               max="100"
             ></progress>
           </div>
