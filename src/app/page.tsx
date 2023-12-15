@@ -181,9 +181,13 @@ export default function Home() {
           <ul className="shelf__list shelf__list-2">
             <Slider {...slickSettingsShelf1}>
               {separatedProducts[1].map((produto, index) => (
-                <>
+                <li
+                  key={index}
+                  className="shelf__list__item"
+                  id={produto.id.toString()}
+                >
                   <ProdutoItem key={index} produto={produto} />
-                </>
+                </li>
               ))}
             </Slider>
           </ul>

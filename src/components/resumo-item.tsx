@@ -8,7 +8,7 @@ export function ResumoItem({ content }: ResumoItemProps) {
     <li className="summary-product-list__list__item">
       <img
         className="product-img--small"
-        src="https://fakeimg.pl/70x70/"
+        src={content.produto.srcImagemS}
         alt=""
       />
 

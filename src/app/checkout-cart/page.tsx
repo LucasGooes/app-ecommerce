@@ -1,198 +1,99 @@
 "use client";
 
+import { HeaderCheckout } from '@/components/header-checkout';
+import { TopBar } from "@/components/topbar";
+import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
+import Link from "next/link";
 import "../../global/styles/reset.css";
 import "../../global/styles/style.css";
 
 export default function CheckoutCart() {
+  const { produtosSelecionados, setProdutosSelecionado } = useCarrinhoContext();
+  const handleClickDelete = (content: (typeof produtosSelecionados)[0]) => {
+    setProdutosSelecionado((items) =>
+      items.filter((item) => item.produto.id !== content.produto.id)
+    );
+  };
+
+  const handleClickPlus = (content: (typeof produtosSelecionados)[0]) => {
+    setProdutosSelecionado((items) => {
+      return items.map((item) => {
+        if (item.produto.id === content.produto.id) {
+          return { ...item, quantidade: item.quantidade + 1 };
+        }
+        return item;
+      });
+    });
+  };
+
+  const handleClickMinus = (content: (typeof produtosSelecionados)[0]) => {
+    setProdutosSelecionado((items) => {
+      return items.map((item) => {
+        if (item.produto.id === content.produto.id) {
+          return { ...item, quantidade: item.quantidade - 1 };
+        }
+        return item;
+      });
+    });
+  };
   return (
     <>
-      <div className="top-bar">
-        <ul className="top-bar__text-list container">
-          <li className="top-bar__text-list__item">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
-          <li className="top-bar__text-list__item">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
-          <li className="top-bar__text-list__item">
-            <span>Lorem ipsum dolor sit amet</span>
-          </li>
-        </ul>
-      </div>
-      <header className="header-container sticky0">
-        <div className="header-main-content">
-          <div className="header-main-content__inner-container container">
-            <a href="/templates/index.html">
-              <img
-                className="header-main-content__inner-container__logo"
-                src="https://fakeimg.pl/120x70/"
-                alt=""
-              /></a>
-
-            <div className="checkout-progress">
-              <label className="checkout-text-1" htmlFor="checkoutProgress">Finalizar pedido</label>
-              <progress id="checkoutProgress" value="50" max="100"></progress>
-            </div>
-
-            <div className="header-actions">
-              <a className="header-actions__shortcut" href="mailto:sac@email.com.br?subject=Atendimento e-commerce&body=Olá, venho do e-commerce e preciso de ajudar com o seguinte problema:">
-                <span className="material-symbols-outlined"> support_agent </span>
-                <span>Atendimento</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="header-menu">
-          <nav className="header-menu__inner container">
-            <ul className="header-menu__inner__list">
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >Departamento</a
-                >
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <TopBar />
+      <HeaderCheckout />
 
       <main className="checkout-container container" style={{ width: "100%" }}>
         <div className="checkout-box checkout-box--left">
           <h1 className="checkout-text-1">Seus produtos</h1>
           <ul className="checkout-product-list">
-            <li className="checkout-product-list__item">
-              <div className="checkout-img-and-title">
-                <img
-                  className="product-img--medium"
-                  src="https://fakeimg.pl/100x100/"
-                  alt=""
-                />
+            {produtosSelecionados.map((item, index) => (
+              <li className="checkout-product-list__item" key={index}>
+                <div className="checkout-img-and-title">
+                  <img
+                    className="product-img--medium"
+                    src={item.produto.srcImagemS}
+                    alt=""
+                  />
 
-                <span className="checkout-product-name checkout-text-1"
-                >Nome do produto em até duas linhas</span
+                  <span className="checkout-product-name checkout-text-1">
+                    {item.produto.nome}
+                  </span>
+                </div>
+
+                <div className="qtt-input">
+                  <button id="minusa" onClick={() => handleClickMinus(item)}>
+                    <span className="material-symbols-outlined"> remove </span>
+                  </button>
+                  <input
+                    type="number"
+                    value={item.quantidade}
+                    id="inputa"
+                    minLength={1}
+                  />
+                  <button id="plusa" onClick={() => handleClickPlus(item)}>
+                    <span className="material-symbols-outlined"> add </span>
+                  </button>
+                </div>
+
+                <span className="checkout-box--left price">
+                  R$ {(item.produto.preco * item.quantidade).toFixed(2)}
+                </span>
+
+                <button
+                  className="action-remove"
+                  onClick={() => handleClickDelete(item)}
                 >
-              </div>
-
-              <div className="qtt-input">
-                <button id="minusa">
-                  <span className="material-symbols-outlined"> remove </span>
+                  <span className="material-symbols-outlined"> delete </span>
                 </button>
-                <input type="number" value="1" id="inputa" minLength="1" />
-                <button id="plusa">
-                  <span className="material-symbols-outlined"> add </span>
-                </button>
-              </div>
-
-              <span className="checkout-box--left price">R$ 000,00</span>
-
-              <button className="action-remove">
-                <span className="material-symbols-outlined"> delete </span>
-              </button>
-            </li>
-
-            <li className="checkout-product-list__item">
-              <div className="checkout-img-and-title">
-                <img
-                  className="product-img--medium"
-                  src="https://fakeimg.pl/100x100/"
-                  alt=""
-                />
-
-                <span className="checkout-product-name checkout-text-1"
-                >Nome do produto em até duas linhas</span
-                >
-              </div>
-
-              <div className="qtt-input">
-                <button id="minusa">
-                  <span className="material-symbols-outlined"> remove </span>
-                </button>
-                <input type="number" value="1" id="inputa" minLength="1" />
-                <button id="plusa">
-                  <span className="material-symbols-outlined"> add </span>
-                </button>
-              </div>
-
-              <span className="checkout-box--left price">R$ 000,00</span>
-
-              <button className="action-remove">
-                <span className="material-symbols-outlined"> delete </span>
-              </button>
-            </li>
-
-            <li className="checkout-product-list__item">
-              <div className="checkout-img-and-title">
-                <img
-                  className="product-img--medium"
-                  src="https://fakeimg.pl/100x100/"
-                  alt=""
-                />
-
-                <span className="checkout-product-name checkout-text-1"
-                >Nome do produto em até duas linhas</span
-                >
-              </div>
-
-              <div className="qtt-input">
-                <button id="minusa">
-                  <span className="material-symbols-outlined"> remove </span>
-                </button>
-                <input type="number" value="1" id="inputa" minLength="1" />
-                <button id="plusa">
-                  <span className="material-symbols-outlined"> add </span>
-                </button>
-              </div>
-
-              <span className="checkout-box--left price">R$ 000,00</span>
-
-              <button className="action-remove">
-                <span className="material-symbols-outlined"> delete </span>
-              </button>
-            </li>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div className="checkout-box checkout-box--right">
           <div className="input-field-1">
-            <label className="checkout-text-1" htmlFor="cupomField"
-            >Adicionar Cupom:</label
-            >
+            <label className="checkout-text-1" htmlFor="cupomField">
+              Adicionar Cupom:
+            </label>
             <form className="input-field-1__coupom">
               <input id="cupomField" type="text" placeholder="CUPOM" />
               <button>Adicionar</button>
@@ -200,9 +101,9 @@ export default function CheckoutCart() {
           </div>
 
           <div className="input-field-1">
-            <label className="checkout-text-1" htmlFor="shippingField"
-            >Calcular o frete:</label
-            >
+            <label className="checkout-text-1" htmlFor="shippingField">
+              Calcular o frete:
+            </label>
             <form className="input-field-1__shipping">
               <input id="shippingField" type="text" placeholder="CEP" />
               <button>Calcular</button>
@@ -212,7 +113,16 @@ export default function CheckoutCart() {
           <div className="detailed-cost">
             <div className="detailed-cost__line">
               <span>Subtotal</span>
-              <span> R$000,00</span>
+              <span>
+                {" "}
+                R$
+                {produtosSelecionados
+                  .reduce(
+                    (acc, item) => acc + item.produto.preco * item.quantidade,
+                    0
+                  )
+                  .toFixed(2)}
+              </span>
             </div>
 
             <div className="detailed-cost__line">
@@ -223,11 +133,24 @@ export default function CheckoutCart() {
 
           <div className="total-cost">
             <span className="checkout-text-1 tb">Total</span>
-            <span className="checkout-text-1 tb"> R$000,00</span>
+            <span className="checkout-text-1 tb">
+              {" "}
+              R${" "}
+              {produtosSelecionados
+                .reduce(
+                  (acc, item) => acc + item.produto.preco * item.quantidade,
+                  0
+                )
+                .toFixed(2)}
+            </span>
           </div>
 
-          <a className="cta checkout" href="/templates/checkout/info-and-payment.html">Continuar</a>
-          <a className="cta2 checkout" href="/templates/index.html">Adicionar outros produtos</a>
+          <Link className="cta checkout" href="/checkout-info-and-payment">
+            Continuar
+          </Link>
+          <a className="cta2 checkout" href="/">
+            Adicionar outros produtos
+          </a>
         </div>
       </main>
 
@@ -241,8 +164,8 @@ export default function CheckoutCart() {
                 className="footer-main-content__about-box__logo"
               />
               <p className="footer-main-content__about-box__text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                pretium non purus id suscipit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Curabitur pretium non purus id suscipit.
               </p>
             </div>
             <ul className="footer-menu footer-menu--1">
@@ -263,7 +186,9 @@ export default function CheckoutCart() {
 
         <div className="footer-legal-info">
           <div className="container">
-            <p className="footer-legal-info__text">Informação de desenvolvimento</p>
+            <p className="footer-legal-info__text">
+              Informação de desenvolvimento
+            </p>
           </div>
         </div>
       </footer>
@@ -284,13 +209,13 @@ export default function CheckoutCart() {
               alt=""
             />
             <div className="minicart-drawer__product-list__infos">
-              <span className="product-name--2-lines"
-              >Nome do produto em até duas linhas</span
-              >
+              <span className="product-name--2-lines">
+                Nome do produto em até duas linhas
+              </span>
 
-              <span className="minicart-drawer__product-list__infos__price"
-              >R$ 000,00</span
-              >
+              <span className="minicart-drawer__product-list__infos__price">
+                R$ 000,00
+              </span>
             </div>
 
             <div className="minicart-drawer__product-list__actions">
@@ -324,18 +249,19 @@ export default function CheckoutCart() {
           <a
             className="minicart-drawer__footer__cta1 cta"
             href="/templates/checkout/cart.html"
-          >Finalizar pedido</a
           >
+            Finalizar pedido
+          </a>
           <button
             id="minicartCloseButton"
             className="minicart-drawer__footer__cta2 cta cta2"
           >
-            <span className="material-symbols-outlined"> arrow_back </span> Continuar
-            comprando
+            <span className="material-symbols-outlined"> arrow_back </span>{" "}
+            Continuar comprando
           </button>
         </div>
       </div>
       <div id="bgLock" className="bg-lock dn"></div>
     </>
-  )
+  );
 }

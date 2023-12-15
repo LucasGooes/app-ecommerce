@@ -53,7 +53,7 @@ export default function Minicart({ aberto, fechar }: MinicartProps) {
 
           <Link
             className="minicart-drawer__footer__cta1 cta"
-            href="/checkout-info-and-payment"
+            href="/checkout-cart"
           >
             Finalizar pedido
           </Link>

@@ -10,7 +10,6 @@ interface MinicartProductItemProps {
 }
 export function MinicartProductItem({ content }: MinicartProductItemProps) {
   const { produtosSelecionados, setProdutosSelecionado } = useCarrinhoContext();
-  console.log(produtosSelecionados);
 
   const handleClickDelete = () => {
     setProdutosSelecionado((items) =>

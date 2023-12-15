@@ -183,9 +183,13 @@ export default function Produto({ params }: { params: { id: string } }) {
           <ul className="shelf__list shelf__list-1">
             <Slider {...slickSettingsShelf1}>
               {produtos.content.map((item, index) => (
-                <>
+                <li
+                  key={index}
+                  className="shelf__list__item"
+                  id={item.id.toString()}
+                >
                   <ProdutoItem key={index} produto={item} />
-                </>
+                </li>
               ))}
             </Slider>
           </ul>

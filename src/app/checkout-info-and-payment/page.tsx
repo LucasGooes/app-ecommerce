@@ -1,5 +1,6 @@
 "use client";
 
+import { HeaderCheckout } from "@/components/header-checkout";
 import { ResumoItem } from "@/components/resumo-item";
 import { TopBar } from "@/components/topbar";
 import { useCarrinhoContext } from "@/contexts/CarrinhoContext";
@@ -28,93 +29,7 @@ export default function CheckoutInfoAndPayment() {
   return (
     <>
       <TopBar />
-      <header className="header-container sticky0">
-        <div className="header-main-content">
-          <div className="header-main-content__inner-container container">
-            <a href="/templates/index.html">
-              <img
-                className="header-main-content__inner-container__logo"
-                src="https://fakeimg.pl/120x70/"
-                alt=""
-              />
-            </a>
-
-            <div className="checkout-progress">
-              <label className="checkout-text-1" htmlFor="checkoutProgress">
-                Finalizar pedido
-              </label>
-              <progress id="checkoutProgress" value="90" max="100"></progress>
-            </div>
-
-            <div className="header-actions">
-              <a
-                className="header-actions__shortcut"
-                href="mailto:sac@email.com.br?subject=Atendimento e-commerce&body=Olá, venho do e-commerce e preciso de ajudar com o seguinte problema:"
-              >
-                <span className="material-symbols-outlined">
-                  {" "}
-                  support_agent{" "}
-                </span>
-                <span>Atendimento</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="header-menu">
-          <nav className="header-menu__inner container">
-            <ul className="header-menu__inner__list">
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >
-                  Departamento
-                </a>
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >
-                  Departamento
-                </a>
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >
-                  Departamento
-                </a>
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >
-                  Departamento
-                </a>
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >
-                  Departamento
-                </a>
-              </li>
-              <li className="header-menu__inner__list__item">
-                <a
-                  href="templates/plp.html"
-                  className="header-menu__inner__list__item__link"
-                >
-                  Departamento
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <HeaderCheckout />
 
       <main style={{ width: "100%" }}>
         <form onSubmit={handleSubmit} className="checkout-container container">
